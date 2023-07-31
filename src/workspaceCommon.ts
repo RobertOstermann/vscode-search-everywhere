@@ -22,13 +22,13 @@ async function index(trigger: string): Promise<void> {
 async function indexWithProgress(): Promise<void> {
   utils.hasWorkspaceAnyFolder()
     ? await vscode.window.withProgress(
-        {
-          location: workspaceCommon.getNotificationLocation(),
-          title: workspaceCommon.getNotificationTitle(),
-          cancellable: true,
-        },
-        indexWithProgressTask,
-      )
+      {
+        location: workspaceCommon.getNotificationLocation(),
+        title: workspaceCommon.getNotificationTitle(),
+        cancellable: true,
+      },
+      indexWithProgressTask,
+    )
     : utils.printNoFolderOpenedMessage();
 }
 
@@ -104,7 +104,7 @@ function printStats(data: WorkspaceData, elapsedTime: number) {
     IndexedItemsCount: data.count,
   };
 
-  utils.printStatsMessage(indexStats);
+  // utils.printStatsMessage(indexStats);
   logger.logScanTime(indexStats);
   logger.logStructure(data);
 }
