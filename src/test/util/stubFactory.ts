@@ -1,10 +1,11 @@
+import { createStubInstance } from "./stubbedClass";
+
 import * as sinon from "sinon";
 import * as vscode from "vscode";
-import { createStubInstance } from "./stubbedClass";
 
 export function getTextEditorStub(
   isUntitled: boolean = true,
-  getTextReturnValue: string = ""
+  getTextReturnValue: string = "",
 ): vscode.TextEditor {
   return {
     document: {
@@ -30,7 +31,7 @@ export function getTextEditorStub(
     },
     selection: new vscode.Selection(
       new vscode.Position(1, 1),
-      new vscode.Position(1, 1)
+      new vscode.Position(1, 1),
     ),
     selections: [],
     visibleRanges: [],
@@ -47,7 +48,7 @@ export function getTextEditorStub(
 
 export function getTextDocumentStub(
   isUntitled: boolean = true,
-  uriPath: string = "#"
+  uriPath: string = "#",
 ): vscode.TextDocument {
   return {
     uri: vscode.Uri.file(uriPath),

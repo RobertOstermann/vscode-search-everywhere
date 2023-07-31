@@ -1,6 +1,7 @@
-import { assert } from "chai";
 import { dataConverter } from "../../dataConverter";
 import { getTestSetups } from "../testSetup/dataConverter.testSetup";
+
+import { assert } from "chai";
 
 type SetupsType = ReturnType<typeof getTestSetups>;
 
@@ -65,7 +66,7 @@ describe("DataConverter", () => {
       dataConverter.fetchConfig();
       assert.equal(
         dataConverter.getShouldUseItemsFilterPhrases(),
-        shouldUseItemsFilterPhrases
+        shouldUseItemsFilterPhrases,
       );
     });
 

@@ -1,5 +1,3 @@
-import * as sinon from "sinon";
-import * as vscode from "vscode";
 import * as config from "../../config";
 import { dataConverter } from "../../dataConverter";
 import { Icons, ItemsFilterPhrases } from "../../types";
@@ -8,12 +6,15 @@ import { mocks } from "../mock/dataConverter.mock";
 import { getConfiguration, getWorkspaceData } from "../util/mockFactory";
 import { stubMultiple } from "../util/stubHelpers";
 
+import * as sinon from "sinon";
+import * as vscode from "vscode";
+
 const stubConfig = (
   sandbox: sinon.SinonSandbox,
   icons: Icons = {},
   shouldUseItemsFilterPhrases: boolean = false,
   itemsFilterPhrases: ItemsFilterPhrases = {},
-  workspaceFolders: vscode.WorkspaceFolder[] | null = mocks.workspaceFolders
+  workspaceFolders: vscode.WorkspaceFolder[] | null = mocks.workspaceFolders,
 ) => {
   stubMultiple(
     [
@@ -40,7 +41,7 @@ const stubConfig = (
         returnsIsUndefined: !!workspaceFolders,
       },
     ],
-    sandbox
+    sandbox,
   );
 };
 
@@ -54,13 +55,13 @@ export const getTestSetups = () => {
     reload1: () => {
       return stubMultiple(
         [{ object: dataConverter, method: "fetchConfig" }],
-        sandbox
+        sandbox,
       );
     },
     cancel1: () => {
       return stubMultiple(
         [{ object: dataConverter, method: "setCancelled" }],
-        sandbox
+        sandbox,
       );
     },
     convertToQpData1: () => {
@@ -83,7 +84,7 @@ export const getTestSetups = () => {
             returns: "§&§",
           },
         ],
-        sandbox
+        sandbox,
       );
 
       const { workspaceData, qpItems } = mocks.convertToQpData1();
@@ -100,7 +101,7 @@ export const getTestSetups = () => {
         configuration.icons,
         true,
         configuration.itemsFilterPhrases,
-        null
+        null,
       );
       stubMultiple(
         [
@@ -120,7 +121,7 @@ export const getTestSetups = () => {
             returns: "§&§",
           },
         ],
-        sandbox
+        sandbox,
       );
 
       const { workspaceData, qpItems } = mocks.convertToQpData2();
@@ -145,7 +146,7 @@ export const getTestSetups = () => {
             returns: true,
           },
         ],
-        sandbox
+        sandbox,
       );
 
       const { workspaceData } = mocks.convertToQpData4();
@@ -174,7 +175,7 @@ export const getTestSetups = () => {
             method: "fetchItemsFilterPhrases",
           },
         ],
-        sandbox
+        sandbox,
       );
       return expected;
     },
@@ -197,7 +198,7 @@ export const getTestSetups = () => {
             method: "fetchItemsFilterPhrases",
           },
         ],
-        sandbox
+        sandbox,
       );
       return expected;
     },
@@ -220,7 +221,7 @@ export const getTestSetups = () => {
             method: "fetchIcons",
           },
         ],
-        sandbox
+        sandbox,
       );
       return expected;
     },

@@ -1,10 +1,11 @@
-import * as sinon from "sinon";
 import { appConfig } from "../../appConfig";
 import * as mock from "../mock/cache.mock";
 import { getItems } from "../util/itemMockFactory";
 import { getExtensionContext } from "../util/mockFactory";
 import { getQpItems } from "../util/qpItemMockFactory";
 import { stubMultiple } from "../util/stubHelpers";
+
+import * as sinon from "sinon";
 
 export const getTestSetups = () => {
   const context = getExtensionContext();
@@ -27,7 +28,7 @@ export const getTestSetups = () => {
             isNotMethod: true,
           },
         ],
-        sandbox
+        sandbox,
       );
 
       return context;
@@ -45,7 +46,7 @@ export const getTestSetups = () => {
             returns: qpItems,
           },
         ],
-        sandbox
+        sandbox,
       );
 
       return qpItems;
@@ -59,7 +60,7 @@ export const getTestSetups = () => {
             returns: undefined,
           },
         ],
-        sandbox
+        sandbox,
       );
 
       return [];
@@ -72,7 +73,7 @@ export const getTestSetups = () => {
             method: "update",
           },
         ],
-        sandbox
+        sandbox,
       );
 
       return {
@@ -92,7 +93,7 @@ export const getTestSetups = () => {
             returns: paths,
           },
         ],
-        sandbox
+        sandbox,
       );
 
       return paths;
@@ -106,7 +107,7 @@ export const getTestSetups = () => {
             returns: undefined,
           },
         ],
-        sandbox
+        sandbox,
       );
 
       return [];
@@ -121,7 +122,7 @@ export const getTestSetups = () => {
             returns: { [key]: mock.configuration[key] },
           },
         ],
-        sandbox
+        sandbox,
       );
 
       return key;
@@ -136,7 +137,7 @@ export const getTestSetups = () => {
             returns: undefined,
           },
         ],
-        sandbox
+        sandbox,
       );
 
       return key;
@@ -160,7 +161,7 @@ export const getTestSetups = () => {
             returns: mock.configuration,
           },
         ],
-        sandbox
+        sandbox,
       );
 
       return { stubs, key, newConfig };
@@ -180,7 +181,7 @@ export const getTestSetups = () => {
             returns: undefined,
           },
         ],
-        sandbox
+        sandbox,
       );
 
       return { stubs, key };
@@ -193,7 +194,7 @@ export const getTestSetups = () => {
             method: "update",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     clearConfig1: () => {
@@ -204,7 +205,7 @@ export const getTestSetups = () => {
             method: "update",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     clearNotSavedUriPaths1: () => {
@@ -215,7 +216,7 @@ export const getTestSetups = () => {
             method: "update",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
   };

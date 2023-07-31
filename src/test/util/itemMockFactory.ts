@@ -13,7 +13,7 @@ export const getUntitledItem = (): vscode.Uri => {
 export const getItem = (
   path: string = "/./fake/",
   suffix: string | number = 1,
-  fixPrivateFsPathProperty: boolean = false
+  fixPrivateFsPathProperty: boolean = false,
 ): vscode.Uri => {
   const item = vscode.Uri.file(`${path}fake-${suffix ? `${suffix}` : ""}.ts`);
   fixPrivateFsPathProperty && ((item as any)._fsPath = item.path);
@@ -24,7 +24,7 @@ export const getItems = (
   count: number = 2,
   path: string = "/./fake/",
   suffixStartOffset: number = 0,
-  fixPrivateFsPathProperty: boolean = false
+  fixPrivateFsPathProperty: boolean = false,
 ): vscode.Uri[] => {
   const array: vscode.Uri[] = [];
   for (let i = 1; i <= count; i++) {
@@ -36,7 +36,7 @@ export const getItems = (
 export const getDocumentSymbolItemSingleLine = (
   suffix?: string | number,
   withChild: boolean = false,
-  kind: number = 1
+  kind: number = 1,
 ): vscode.DocumentSymbol => {
   return {
     name: `test name${suffix ? ` ${suffix}` : ""}`,
@@ -44,11 +44,11 @@ export const getDocumentSymbolItemSingleLine = (
     kind,
     range: new vscode.Range(
       new vscode.Position(0, 0),
-      new vscode.Position(0, 0)
+      new vscode.Position(0, 0),
     ),
     selectionRange: new vscode.Range(
       new vscode.Position(0, 0),
-      new vscode.Position(0, 0)
+      new vscode.Position(0, 0),
     ),
     children: withChild
       ? [
@@ -58,11 +58,11 @@ export const getDocumentSymbolItemSingleLine = (
             kind,
             range: new vscode.Range(
               new vscode.Position(0, 0),
-              new vscode.Position(0, 0)
+              new vscode.Position(0, 0),
             ),
             selectionRange: new vscode.Range(
               new vscode.Position(0, 0),
-              new vscode.Position(0, 0)
+              new vscode.Position(0, 0),
             ),
             children: [],
           },
@@ -75,7 +75,7 @@ export const getDocumentSymbolItemSingleLineArray = (
   count: number = 0,
   withChild: boolean = false,
   kind: number = 1,
-  kindsFromFirstItem: number[] = []
+  kindsFromFirstItem: number[] = [],
 ): vscode.DocumentSymbol[] => {
   const array: vscode.DocumentSymbol[] = [];
   for (let i = 0; i < count; i++) {
@@ -83,15 +83,15 @@ export const getDocumentSymbolItemSingleLineArray = (
       getDocumentSymbolItemSingleLine(
         i + 1,
         withChild,
-        kindsFromFirstItem[i] ? kindsFromFirstItem[i] : kind
-      )
+        kindsFromFirstItem[i] ? kindsFromFirstItem[i] : kind,
+      ),
     );
   }
   return array;
 };
 
 export const getDocumentSymbolItemMultiLine = (
-  withParent: boolean = false
+  withParent: boolean = false,
 ): vscode.DocumentSymbol => {
   return {
     name: `${withParent ? "test parent§&§" : ""}test name`,
@@ -99,11 +99,11 @@ export const getDocumentSymbolItemMultiLine = (
     kind: 1,
     range: new vscode.Range(
       new vscode.Position(0, 0),
-      new vscode.Position(3, 0)
+      new vscode.Position(3, 0),
     ),
     selectionRange: new vscode.Range(
       new vscode.Position(0, 0),
-      new vscode.Position(3, 0)
+      new vscode.Position(3, 0),
     ),
     children: [],
   };

@@ -89,7 +89,7 @@ function reduceRebuildAction(actionType: ActionType, actions: Action[]) {
   } else if (ifActionArrayContainsRebuildType(actions)) {
     const last = utils.getLastFromArray(
       actionProcessor.queue,
-      (action: Action) => action.type === actionType
+      (action: Action) => action.type === actionType,
     );
     actionProcessor.queue = [last];
   }
@@ -107,7 +107,7 @@ function ifActionArrayContainsRebuildType(actions: Action[]): boolean {
 function reduceUpdateRemoveAction(actionType: ActionType, actions: Action[]) {
   const groupedActions = utils.groupBy(
     actions,
-    (action: Action) => action.uri!.path
+    (action: Action) => action.uri!.path,
   );
 
   groupedActions.forEach(reduceByFsPath.bind(null, actionType));
@@ -116,16 +116,16 @@ function reduceUpdateRemoveAction(actionType: ActionType, actions: Action[]) {
 function reduceByFsPath(
   actionType: ActionType,
   _actionsByFsPath: Action[],
-  fsPath: string
+  fsPath: string,
 ) {
   const lastAction: Action = utils.getLastFromArray(
     actionProcessor.queue,
     (action: Action) =>
-      action.type === actionType && action.uri!.path === fsPath
+      action.type === actionType && action.uri!.path === fsPath,
   );
 
   actionProcessor.queue = actionProcessor.queue.filter(
-    shouldActionRemainInQueue.bind(null, actionType, fsPath, lastAction)
+    shouldActionRemainInQueue.bind(null, actionType, fsPath, lastAction),
   );
 }
 
@@ -133,7 +133,7 @@ function shouldActionRemainInQueue(
   actionType: ActionType,
   fsPath: string,
   lastAction: Action,
-  action: Action
+  action: Action,
 ) {
   return (
     action.type !== actionType ||
@@ -144,7 +144,7 @@ function shouldActionRemainInQueue(
 
 function getActionsFromQueueByType(actionType: ActionType): Action[] {
   return actionProcessor.queue.filter(
-    (action: Action) => action.type === actionType
+    (action: Action) => action.type === actionType,
   );
 }
 

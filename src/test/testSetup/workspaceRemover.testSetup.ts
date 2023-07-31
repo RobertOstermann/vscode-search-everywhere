@@ -1,8 +1,9 @@
-import * as sinon from "sinon";
 import * as cache from "../../cache";
 import { workspaceCommon as common } from "../../workspaceCommon";
 import { getQpItems } from "../util/qpItemMockFactory";
 import { stubMultiple } from "../util/stubHelpers";
+
+import * as sinon from "sinon";
 
 export const getTestSetups = () => {
   const sandbox = sinon.createSandbox();
@@ -24,7 +25,7 @@ export const getTestSetups = () => {
             returns: getQpItems(),
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     removeFromCacheByPath2: () => {
@@ -40,7 +41,7 @@ export const getTestSetups = () => {
             returns: getQpItems(),
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     removeFromCacheByPath3: () => {
@@ -56,7 +57,7 @@ export const getTestSetups = () => {
             returns: getQpItems(),
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     removeFromCacheByPath4: () => {
@@ -72,7 +73,7 @@ export const getTestSetups = () => {
             returns: getQpItems(),
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     removeFromCacheByPath5: () => {
@@ -88,7 +89,7 @@ export const getTestSetups = () => {
             returns: getQpItems(),
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     removeFromCacheByPath6: () => {
@@ -104,7 +105,7 @@ export const getTestSetups = () => {
             returns: getQpItems(),
           },
         ],
-        sandbox
+        sandbox,
       );
     },
   };

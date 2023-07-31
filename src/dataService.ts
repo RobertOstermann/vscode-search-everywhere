@@ -1,9 +1,10 @@
-import * as vscode from "vscode";
 import { fetchItemsFilter } from "./config";
 import { onDidItemIndexedEventEmitter } from "./dataServiceEventsEmitter";
 import { patternProvider } from "./patternProvider";
 import { Item, ItemsFilter, WorkspaceData } from "./types";
 import { utils } from "./utils";
+
+import * as vscode from "vscode";
 
 async function fetchUris(): Promise<vscode.Uri[]> {
   const includePatterns = patternProvider.getIncludePatterns();
@@ -17,14 +18,14 @@ async function fetchUris(): Promise<vscode.Uri[]> {
 }
 
 async function getUrisOrFetchIfEmpty(
-  uris?: vscode.Uri[]
+  uris?: vscode.Uri[],
 ): Promise<vscode.Uri[]> {
   return uris && uris.length ? uris : await dataService.fetchUris();
 }
 
 async function includeSymbols(
   workspaceData: WorkspaceData,
-  uris: vscode.Uri[]
+  uris: vscode.Uri[],
 ): Promise<void> {
   const fetchSymbolsForUriPromises = [];
 
@@ -37,18 +38,18 @@ async function includeSymbols(
     const uri = uris[i];
     fetchSymbolsForUriPromises.push(
       (async () => {
-        let symbolsForUri = await tryToGetSymbolsForUri(uri);
+        const symbolsForUri = await tryToGetSymbolsForUri(uri);
         addSymbolsForUriToWorkspaceData(workspaceData, uri, symbolsForUri);
 
         onDidItemIndexedEventEmitter.fire(uris.length);
-      })()
+      })(),
     );
   }
   await Promise.all(fetchSymbolsForUriPromises);
 }
 
 async function tryToGetSymbolsForUri(
-  uri: vscode.Uri
+  uri: vscode.Uri,
 ): Promise<vscode.DocumentSymbol[] | undefined> {
   const maxCounter = 10;
   let counter = 0;
@@ -66,7 +67,7 @@ async function tryToGetSymbolsForUri(
 function addSymbolsForUriToWorkspaceData(
   workspaceData: WorkspaceData,
   uri: vscode.Uri,
-  symbolsForUri: vscode.DocumentSymbol[] | undefined
+  symbolsForUri: vscode.DocumentSymbol[] | undefined,
 ) {
   symbolsForUri &&
     symbolsForUri.length &&
@@ -103,7 +104,7 @@ function addUriToWorkspaceData(workspaceData: WorkspaceData, uri: vscode.Uri) {
 function addUriToExistingArrayOfElements(
   workspaceData: WorkspaceData,
   uri: vscode.Uri,
-  item: Item
+  item: Item,
 ) {
   item.elements.push(uri);
   workspaceData.count++;
@@ -111,7 +112,7 @@ function addUriToExistingArrayOfElements(
 
 function createItemWithArrayOfElementsForUri(
   workspaceData: WorkspaceData,
-  uri: vscode.Uri
+  uri: vscode.Uri,
 ) {
   workspaceData.items.set(uri.path, {
     uri,
@@ -122,7 +123,7 @@ function createItemWithArrayOfElementsForUri(
 
 function ifUriExistsInArray(
   array: Array<vscode.Uri | vscode.DocumentSymbol>,
-  uri: vscode.Uri
+  uri: vscode.Uri,
 ) {
   return array.some((uriInArray: vscode.Uri | vscode.DocumentSymbol) => {
     if (!uriInArray.hasOwnProperty("range")) {
@@ -134,7 +135,7 @@ function ifUriExistsInArray(
 }
 
 async function getSymbolsForUri(
-  uri: vscode.Uri
+  uri: vscode.Uri,
 ): Promise<vscode.DocumentSymbol[] | undefined> {
   const allSymbols = await loadAllSymbolsForUri(uri);
   const symbols = allSymbols
@@ -144,17 +145,17 @@ async function getSymbolsForUri(
 }
 
 async function loadAllSymbolsForUri(
-  uri: vscode.Uri
+  uri: vscode.Uri,
 ): Promise<vscode.DocumentSymbol[] | undefined> {
   return await vscode.commands.executeCommand<vscode.DocumentSymbol[]>(
     "vscode.executeDocumentSymbolProvider",
-    uri
+    uri,
   );
 }
 
 function reduceAndFlatSymbolsArrayForUri(
   symbols: vscode.DocumentSymbol[],
-  parentName?: string
+  parentName?: string,
 ): vscode.DocumentSymbol[] {
   const flatArrayOfSymbols: vscode.DocumentSymbol[] = [];
 
@@ -164,7 +165,7 @@ function reduceAndFlatSymbolsArrayForUri(
 
     if (hasSymbolChildren(symbol)) {
       flatArrayOfSymbols.push(
-        ...reduceAndFlatSymbolsArrayForUri(symbol.children, symbol.name)
+        ...reduceAndFlatSymbolsArrayForUri(symbol.children, symbol.name),
       );
     }
     symbol.children = [];
@@ -175,7 +176,7 @@ function reduceAndFlatSymbolsArrayForUri(
 
 function prepareSymbolNameIfHasParent(
   symbol: vscode.DocumentSymbol,
-  parentName?: string
+  parentName?: string,
 ) {
   const splitter = utils.getSplitter();
   if (parentName) {
@@ -193,7 +194,7 @@ function filterUris(uris: vscode.Uri[]): vscode.Uri[] {
 }
 
 function filterSymbols(
-  symbols: vscode.DocumentSymbol[]
+  symbols: vscode.DocumentSymbol[],
 ): vscode.DocumentSymbol[] {
   return symbols.filter((symbol) => isSymbolValid(symbol));
 }
@@ -231,7 +232,7 @@ function isItemValid(item: vscode.Uri | vscode.DocumentSymbol): boolean {
 
 function isInAllowedKinds(
   itemsFilter: ItemsFilter,
-  symbolKind: number
+  symbolKind: number,
 ): boolean {
   return (
     !(itemsFilter.allowedKinds && itemsFilter.allowedKinds.length) ||
@@ -241,7 +242,7 @@ function isInAllowedKinds(
 
 function isNotInIgnoredKinds(
   itemsFilter: ItemsFilter,
-  symbolKind: number
+  symbolKind: number,
 ): boolean {
   return (
     !(itemsFilter.ignoredKinds && itemsFilter.ignoredKinds.length) ||
@@ -251,13 +252,13 @@ function isNotInIgnoredKinds(
 
 function isNotInIgnoredNames(
   itemsFilter: ItemsFilter,
-  name: string | undefined
+  name: string | undefined,
 ): boolean {
   return (
     !(itemsFilter.ignoredNames && itemsFilter.ignoredNames.length) ||
     !itemsFilter.ignoredNames.some(
       (ignoreEl) =>
-        ignoreEl && name && name.toLowerCase().includes(ignoreEl.toLowerCase())
+        ignoreEl && name && name.toLowerCase().includes(ignoreEl.toLowerCase()),
     )
   );
 }

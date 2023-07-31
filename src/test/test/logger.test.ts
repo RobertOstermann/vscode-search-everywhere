@@ -1,6 +1,7 @@
-import { assert } from "chai";
 import { logger } from "../../logger";
 import { getTestSetups } from "../testSetup/logger.testSetup";
+
+import { assert } from "chai";
 
 type SetupsType = ReturnType<typeof getTestSetups>;
 
@@ -32,7 +33,7 @@ describe("Logger", () => {
 
       assert.equal(
         outputChannelInnerStub.calledOnceWith(expectedMessage),
-        true
+        true,
       );
 
       fakeTimer.restore();
@@ -51,7 +52,7 @@ describe("Logger", () => {
 
       assert.equal(
         outputChannelInnerStub.calledOnceWith(expectedMessage),
-        true
+        true,
       );
 
       fakeTimer.restore();
@@ -70,7 +71,7 @@ describe("Logger", () => {
 
       assert.equal(
         outputChannelInnerStub.calledOnceWith(expectedMessage),
-        true
+        true,
       );
 
       fakeTimer.restore();
@@ -89,7 +90,7 @@ describe("Logger", () => {
 
       assert.equal(
         outputChannelInnerStub.calledOnceWith(expectedMessage),
-        true
+        true,
       );
 
       fakeTimer.restore();

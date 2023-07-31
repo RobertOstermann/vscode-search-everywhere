@@ -1,5 +1,3 @@
-import * as sinon from "sinon";
-import * as vscode from "vscode";
 import * as config from "../../config";
 import { quickPick } from "../../quickPick";
 import { getQuickPickOnDidChangeValueEventListeners } from "../util/eventMockFactory";
@@ -13,6 +11,9 @@ import {
 import { getTextEditorStub } from "../util/stubFactory";
 import { stubMultiple } from "../util/stubHelpers";
 
+import * as sinon from "sinon";
+import * as vscode from "vscode";
+
 function stubControl(sandbox: sinon.SinonSandbox) {
   const quickPickInner = vscode.window.createQuickPick<vscode.QuickPickItem>();
   stubMultiple(
@@ -23,7 +24,7 @@ function stubControl(sandbox: sinon.SinonSandbox) {
         returns: quickPickInner,
       },
     ],
-    sandbox
+    sandbox,
   );
 }
 
@@ -65,7 +66,7 @@ export const getTestSetups = () => {
             method: "fetchShouldItemsBeSorted",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     init2: () => {
@@ -105,7 +106,7 @@ export const getTestSetups = () => {
             method: "fetchShouldItemsBeSorted",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     init3: () => {
@@ -145,7 +146,7 @@ export const getTestSetups = () => {
             method: "fetchShouldItemsBeSorted",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     reloadSortingSettings1: () => {
@@ -157,7 +158,7 @@ export const getTestSetups = () => {
             returns: true,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     reloadSortingSettings2: () => {
@@ -169,7 +170,7 @@ export const getTestSetups = () => {
             returns: true,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     reload1: () => {
@@ -192,7 +193,7 @@ export const getTestSetups = () => {
             method: "fetchShouldItemsBeSorted",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     reload2: () => {
@@ -221,7 +222,7 @@ export const getTestSetups = () => {
             method: "fetchShouldItemsBeSorted",
           },
         ],
-        sandbox
+        sandbox,
       );
 
       return getQpHelpItems("?", {
@@ -241,7 +242,7 @@ export const getTestSetups = () => {
             returns: quickPickInner,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     isInitialized2: () => {
@@ -254,7 +255,7 @@ export const getTestSetups = () => {
             returnsIsUndefined: true,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     show1: () => {
@@ -277,7 +278,7 @@ export const getTestSetups = () => {
             returns: true,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     loadItems1: () => {
@@ -296,7 +297,7 @@ export const getTestSetups = () => {
             returns: false,
           },
         ],
-        sandbox
+        sandbox,
       );
 
       return items;
@@ -324,7 +325,7 @@ export const getTestSetups = () => {
             returns: true,
           },
         ],
-        sandbox
+        sandbox,
       );
 
       const separatorItems = {
@@ -371,7 +372,7 @@ export const getTestSetups = () => {
             returns: helpItems,
           },
         ],
-        sandbox
+        sandbox,
       );
 
       return helpItems;
@@ -395,7 +396,7 @@ export const getTestSetups = () => {
             returns: false,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     setPlaceholder3: () => {
@@ -413,7 +414,7 @@ export const getTestSetups = () => {
             returns: "?",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     setPlaceholder4: () => {
@@ -431,7 +432,7 @@ export const getTestSetups = () => {
             returns: "",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     reloadOnDidChangeValueEventListener1: () => {
@@ -448,7 +449,7 @@ export const getTestSetups = () => {
             object: quickPick,
             method: "setOnDidChangeValueEventListeners",
             callsFake: (
-              newOnDidChangeValueEventListeners: vscode.Disposable[]
+              newOnDidChangeValueEventListeners: vscode.Disposable[],
             ) => (listeners = newOnDidChangeValueEventListeners),
           },
           {
@@ -457,7 +458,7 @@ export const getTestSetups = () => {
             returns: false,
           },
         ],
-        sandbox
+        sandbox,
       );
       listeners.push(...getQuickPickOnDidChangeValueEventListeners());
       return listeners;
@@ -476,7 +477,7 @@ export const getTestSetups = () => {
             object: quickPick,
             method: "setOnDidChangeValueEventListeners",
             callsFake: (
-              newOnDidChangeValueEventListeners: vscode.Disposable[]
+              newOnDidChangeValueEventListeners: vscode.Disposable[],
             ) => (listeners = newOnDidChangeValueEventListeners),
           },
           {
@@ -485,7 +486,7 @@ export const getTestSetups = () => {
             returns: true,
           },
         ],
-        sandbox
+        sandbox,
       );
       listeners.push(...getQuickPickOnDidChangeValueEventListeners(1));
       return listeners;
@@ -500,7 +501,7 @@ export const getTestSetups = () => {
             returns: getQpItems(),
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleDidChangeValue1: () => {
@@ -511,7 +512,7 @@ export const getTestSetups = () => {
             method: "loadItems",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleDidChangeValue2: () => {
@@ -532,7 +533,7 @@ export const getTestSetups = () => {
             returns: "?",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleDidAccept1: () => {
@@ -571,7 +572,7 @@ export const getTestSetups = () => {
             method: "fetchShouldHighlightSymbol",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleDidAccept2: () => {
@@ -611,7 +612,7 @@ export const getTestSetups = () => {
             isNotMethod: true,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleDidAccept3: () => {
@@ -646,7 +647,7 @@ export const getTestSetups = () => {
             isNotMethod: true,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleDidHide1: () => {
@@ -661,7 +662,7 @@ export const getTestSetups = () => {
             method: "openItem",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
   };

@@ -1,10 +1,11 @@
-import { assert } from "chai";
-import * as vscode from "vscode";
 import { ActionType } from "../../types";
 import { workspaceCommon } from "../../workspaceCommon";
 import { getTestSetups } from "../testSetup/workspaceCommon.testSetup";
 import { getProgress } from "../util/mockFactory";
 import { getQpItems } from "../util/qpItemMockFactory";
+
+import { assert } from "chai";
+import * as vscode from "vscode";
 
 type SetupsType = ReturnType<typeof getTestSetups>;
 
@@ -66,7 +67,7 @@ describe("WorkspaceCommon", () => {
       await workspaceCommon.registerAction(
         ActionType.Rebuild,
         () => {},
-        "test trigger"
+        "test trigger",
       );
 
       assert.equal(registerStub.calledOnce, true);
@@ -108,7 +109,7 @@ describe("WorkspaceCommon", () => {
 
       assert.equal(
         workspaceCommon.getNotificationLocation(),
-        vscode.ProgressLocation.Window
+        vscode.ProgressLocation.Window,
       );
     });
 
@@ -117,7 +118,7 @@ describe("WorkspaceCommon", () => {
 
       assert.equal(
         workspaceCommon.getNotificationLocation(),
-        vscode.ProgressLocation.Notification
+        vscode.ProgressLocation.Notification,
       );
     });
   });
@@ -128,7 +129,7 @@ describe("WorkspaceCommon", () => {
 
       assert.equal(
         workspaceCommon.getNotificationTitle(),
-        "Indexing workspace files and symbols..."
+        "Indexing workspace files and symbols...",
       );
     });
 
@@ -149,7 +150,7 @@ describe("WorkspaceCommon", () => {
 
       await workspaceCommon.indexWithProgressTask(
         getProgress(),
-        cancellationTokenSource.token
+        cancellationTokenSource.token,
       );
 
       assert.equal(onDidItemIndexedStub.calledOnce, true);
@@ -162,7 +163,7 @@ describe("WorkspaceCommon", () => {
 
       await workspaceCommon.indexWithProgressTask(
         getProgress(),
-        cancellationTokenSource.token
+        cancellationTokenSource.token,
       );
 
       assert.equal(sleepStub.calledOnce, true);
@@ -174,7 +175,7 @@ describe("WorkspaceCommon", () => {
 
       await workspaceCommon.indexWithProgressTask(
         getProgress(),
-        cancellationTokenSource.token
+        cancellationTokenSource.token,
       );
 
       assert.equal(printStatsMessageStub.calledOnce, true);
@@ -187,7 +188,7 @@ describe("WorkspaceCommon", () => {
 
       await workspaceCommon.indexWithProgressTask(
         getProgress(),
-        cancellationTokenSource.token
+        cancellationTokenSource.token,
       );
 
       assert.equal(fetchDataStub.calledOnce, true);
@@ -201,7 +202,7 @@ describe("WorkspaceCommon", () => {
 
       await workspaceCommon.indexWithProgressTask(
         getProgress(),
-        cancellationTokenSource.token
+        cancellationTokenSource.token,
       );
 
       assert.equal(printStatsMessageStub.calledOnce, true);
@@ -223,7 +224,7 @@ describe("WorkspaceCommon", () => {
 
       assert.equal(
         progress.report.calledOnceWith({ increment: 20, message: " 40%" }),
-        true
+        true,
       );
     });
   });

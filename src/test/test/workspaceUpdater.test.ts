@@ -1,4 +1,3 @@
-import { assert } from "chai";
 import { DetailedActionType } from "../../types";
 import * as workspaceUpdater from "../../workspaceUpdater";
 import { getTestSetups } from "../testSetup/workspaceUpdater.testSetup";
@@ -7,6 +6,8 @@ import {
   getQpItems,
   getQpItemsSymbolAndUriExt,
 } from "../util/qpItemMockFactory";
+
+import { assert } from "chai";
 
 type SetupsType = ReturnType<typeof getTestSetups>;
 
@@ -24,39 +25,39 @@ describe("WorkspaceUpdater", () => {
       const [indexStub] = setups.updateCacheByPath1();
       await workspaceUpdater.updateCacheByPath(
         getItem(),
-        DetailedActionType.TextChange
+        DetailedActionType.TextChange,
       );
       assert.equal(indexStub.calledOnce, true);
     });
 
-    it(`2: should update data for given uri when file text is changed`, async () => {
+    it("2: should update data for given uri when file text is changed", async () => {
       const [updateDataStub] = setups.updateCacheByPath2();
       await workspaceUpdater.updateCacheByPath(
         getItem(),
-        DetailedActionType.TextChange
+        DetailedActionType.TextChange,
       );
       assert.equal(updateDataStub.calledOnce, true);
       assert.deepEqual(
         updateDataStub.args[0][0],
-        getQpItemsSymbolAndUriExt("./fake-new/")
+        getQpItemsSymbolAndUriExt("./fake-new/"),
       );
     });
 
-    it(`3: should update data for given uri when file is created`, async () => {
+    it("3: should update data for given uri when file is created", async () => {
       const [updateDataStub] = setups.updateCacheByPath3();
       await workspaceUpdater.updateCacheByPath(
         getItem(),
-        DetailedActionType.CreateNewFile
+        DetailedActionType.CreateNewFile,
       );
       assert.equal(updateDataStub.calledOnce, true);
       assert.deepEqual(updateDataStub.args[0][0], getQpItems(1));
     });
 
-    it(`4: should update data for given uri when file is renamed or moved`, async () => {
+    it("4: should update data for given uri when file is renamed or moved", async () => {
       const [updateDataStub] = setups.updateCacheByPath4();
       await workspaceUpdater.updateCacheByPath(
         getItem(),
-        DetailedActionType.RenameOrMoveFile
+        DetailedActionType.RenameOrMoveFile,
       );
       assert.equal(updateDataStub.calledOnce, true);
       assert.deepEqual(updateDataStub.args[0][0], getQpItems(1));
@@ -67,22 +68,22 @@ describe("WorkspaceUpdater", () => {
       const [updateDataStub] = setups.updateCacheByPath5();
       await workspaceUpdater.updateCacheByPath(
         getDirectory("./fake-new/"),
-        DetailedActionType.RenameOrMoveDirectory
+        DetailedActionType.RenameOrMoveDirectory,
       );
       assert.equal(updateDataStub.calledOnce, true);
       assert.deepEqual(updateDataStub.args[0][0], getQpItems(2, "./fake-new/"));
     });
 
-    it(`6: should update data for given uri when file is reloaded if it is unsaved`, async () => {
+    it("6: should update data for given uri when file is reloaded if it is unsaved", async () => {
       const [updateDataStub] = setups.updateCacheByPath6();
       await workspaceUpdater.updateCacheByPath(
         getItem(),
-        DetailedActionType.ReloadUnsavedUri
+        DetailedActionType.ReloadUnsavedUri,
       );
       assert.equal(updateDataStub.calledOnce, true);
       assert.deepEqual(
         updateDataStub.args[0][0],
-        getQpItemsSymbolAndUriExt("./fake-new/")
+        getQpItemsSymbolAndUriExt("./fake-new/"),
       );
     });
   });

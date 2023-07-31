@@ -7,7 +7,7 @@ export type StubbedClass<T> = sinon.SinonStubbedInstance<T> & T;
 
 export function createStubInstance<T>(
   constructor: sinon.StubbableType<T>,
-  overrides?: { [K in keyof T]?: sinon.SinonStubbedMember<T[K]> }
+  overrides?: { [K in keyof T]?: sinon.SinonStubbedMember<T[K]> },
 ): StubbedClass<T> {
   const stub = sinon.createStubInstance<T>(constructor, overrides);
   return (stub as unknown) as StubbedClass<T>;

@@ -1,9 +1,10 @@
-import { assert } from "chai";
 import { controller } from "../../controller";
 import { ActionType } from "../../types";
 import { getTestSetups } from "../testSetup/controller.testSetup";
 import { getAction, getExtensionContext } from "../util/mockFactory";
 import { getQpItems } from "../util/qpItemMockFactory";
+
+import { assert } from "chai";
 
 type SetupsType = ReturnType<typeof getTestSetups>;
 
@@ -72,28 +73,28 @@ describe("controller", () => {
       assert.equal(indexStub.calledOnce, true);
     });
 
-    it(`3: should clear config from cache if shouldLoadDataFromCacheOnQuickPickOpen method returns true`, async () => {
+    it("3: should clear config from cache if shouldLoadDataFromCacheOnQuickPickOpen method returns true", async () => {
       const [, , clearConfigStub] = setups.search3();
       await controller.search();
 
       assert.equal(clearConfigStub.calledOnce, false);
     });
 
-    it(`4: should init quickPick if shouldLoadDataFromCacheOnQuickPickOpen method returns true and quickPick is not already initialized`, async () => {
+    it("4: should init quickPick if shouldLoadDataFromCacheOnQuickPickOpen method returns true and quickPick is not already initialized", async () => {
       const [, , , initStub] = setups.search4();
       await controller.search();
 
       assert.equal(initStub.calledOnce, false);
     });
 
-    it(`5: should remove data for unsaved uris if shouldLoadDataFromCacheOnQuickPickOpen method returns true and quickPick is not already initialized`, async () => {
+    it("5: should remove data for unsaved uris if shouldLoadDataFromCacheOnQuickPickOpen method returns true and quickPick is not already initialized", async () => {
       const [, , , removeDataForUnsavedUrisStub] = setups.search5();
       await controller.search();
 
       assert.equal(removeDataForUnsavedUrisStub.calledOnce, false);
     });
 
-    it(`6: get data and set it for quickPick if shouldLoadDataFromCacheOnQuickPickOpen method returns true and quickPick is not already initialized`, async () => {
+    it("6: get data and set it for quickPick if shouldLoadDataFromCacheOnQuickPickOpen method returns true and quickPick is not already initialized", async () => {
       const [, , , , getDataStub, setItemsStub] = setups.search6();
       await controller.search();
 
@@ -208,28 +209,28 @@ describe("controller", () => {
       assert.equal(setItemsStub.calledOnce, false);
     });
 
-    it(`3: should clear config in cache if shouldLoadDataFromCacheOnStartup method returns true`, async () => {
+    it("3: should clear config in cache if shouldLoadDataFromCacheOnStartup method returns true", async () => {
       const [, , clearConfigStub] = setups.startup3();
       await controller.startup();
 
       assert.equal(clearConfigStub.calledOnce, true);
     });
 
-    it(`4: should init quickPick if shouldLoadDataFromCacheOnStartup method returns true and quickPick is not already initialized`, async () => {
+    it("4: should init quickPick if shouldLoadDataFromCacheOnStartup method returns true and quickPick is not already initialized", async () => {
       const [, initStub] = setups.startup4();
       await controller.startup();
 
       assert.equal(initStub.calledOnce, true);
     });
 
-    it(`5: should remove data for unsaved uris if shouldLoadDataFromCacheOnStartup method returns true`, async () => {
+    it("5: should remove data for unsaved uris if shouldLoadDataFromCacheOnStartup method returns true", async () => {
       const [removeDataForUnsavedUrisStub] = setups.startup5();
       await controller.startup();
 
       assert.equal(removeDataForUnsavedUrisStub.calledOnce, true);
     });
 
-    it(`6: should get data and set it for quickPick if shouldLoadDataFromCacheOnStartup method returns true`, async () => {
+    it("6: should get data and set it for quickPick if shouldLoadDataFromCacheOnStartup method returns true", async () => {
       const [, , , getDataStub, setItemsStub] = setups.startup6();
       await controller.startup();
 
@@ -304,7 +305,7 @@ describe("controller", () => {
 
       assert.equal(
         controller.isInitOnStartupDisabledAndWorkspaceCachingEnabledButDataIsEmpty(),
-        false
+        false,
       );
     });
 
@@ -313,7 +314,7 @@ describe("controller", () => {
 
       assert.equal(
         controller.isInitOnStartupDisabledAndWorkspaceCachingEnabledButDataIsEmpty(),
-        false
+        false,
       );
     });
 
@@ -322,7 +323,7 @@ describe("controller", () => {
 
       assert.equal(
         controller.isInitOnStartupDisabledAndWorkspaceCachingEnabledButDataIsEmpty(),
-        false
+        false,
       );
     });
 
@@ -331,7 +332,7 @@ describe("controller", () => {
 
       assert.equal(
         controller.isInitOnStartupDisabledAndWorkspaceCachingEnabledButDataIsEmpty(),
-        false
+        false,
       );
     });
 
@@ -341,7 +342,7 @@ describe("controller", () => {
 
       assert.equal(
         controller.isInitOnStartupDisabledAndWorkspaceCachingEnabledButDataIsEmpty(),
-        false
+        false,
       );
     });
   });
@@ -352,7 +353,7 @@ describe("controller", () => {
 
       assert.equal(
         controller.isInitOnStartupDisabledAndWorkspaceCachingDisabled(),
-        false
+        false,
       );
     });
 
@@ -361,7 +362,7 @@ describe("controller", () => {
 
       assert.equal(
         controller.isInitOnStartupDisabledAndWorkspaceCachingDisabled(),
-        false
+        false,
       );
     });
 
@@ -370,7 +371,7 @@ describe("controller", () => {
 
       assert.equal(
         controller.isInitOnStartupDisabledAndWorkspaceCachingDisabled(),
-        false
+        false,
       );
     });
 
@@ -380,7 +381,7 @@ describe("controller", () => {
 
       assert.equal(
         controller.isInitOnStartupDisabledAndWorkspaceCachingDisabled(),
-        true
+        true,
       );
     });
   });
@@ -391,7 +392,7 @@ describe("controller", () => {
 
       assert.equal(
         controller.isInitOnStartupEnabledAndWorkspaceCachingDisabled(),
-        false
+        false,
       );
     });
 
@@ -400,7 +401,7 @@ describe("controller", () => {
 
       assert.equal(
         controller.isInitOnStartupEnabledAndWorkspaceCachingDisabled(),
-        false
+        false,
       );
     });
 
@@ -409,7 +410,7 @@ describe("controller", () => {
 
       assert.equal(
         controller.isInitOnStartupEnabledAndWorkspaceCachingDisabled(),
-        false
+        false,
       );
     });
 
@@ -419,7 +420,7 @@ describe("controller", () => {
 
       assert.equal(
         controller.isInitOnStartupEnabledAndWorkspaceCachingDisabled(),
-        true
+        true,
       );
     });
   });
@@ -430,7 +431,7 @@ describe("controller", () => {
 
       assert.equal(
         controller.isInitOnStartupEnabledAndWorkspaceCachingEnabledButDataIsEmpty(),
-        false
+        false,
       );
     });
 
@@ -439,7 +440,7 @@ describe("controller", () => {
 
       assert.equal(
         controller.isInitOnStartupEnabledAndWorkspaceCachingEnabledButDataIsEmpty(),
-        false
+        false,
       );
     });
 
@@ -448,7 +449,7 @@ describe("controller", () => {
 
       assert.equal(
         controller.isInitOnStartupEnabledAndWorkspaceCachingEnabledButDataIsEmpty(),
-        false
+        false,
       );
     });
 
@@ -457,7 +458,7 @@ describe("controller", () => {
 
       assert.equal(
         controller.isInitOnStartupEnabledAndWorkspaceCachingEnabledButDataIsEmpty(),
-        false
+        false,
       );
     });
 
@@ -467,7 +468,7 @@ describe("controller", () => {
 
       assert.equal(
         controller.isInitOnStartupEnabledAndWorkspaceCachingEnabledButDataIsEmpty(),
-        false
+        false,
       );
     });
   });
@@ -595,7 +596,7 @@ describe("controller", () => {
       assert.equal(setPlaceholderStub.calledWith(false), false);
     });
 
-    it(`3: should quickPick.init method be invoked if quickPick is not initialized`, async () => {
+    it("3: should quickPick.init method be invoked if quickPick is not initialized", async () => {
       const [initStub] = setups.handleWillProcessing3();
       await controller.handleWillProcessing();
 

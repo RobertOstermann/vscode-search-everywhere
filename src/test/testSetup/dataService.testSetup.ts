@@ -1,5 +1,3 @@
-import * as sinon from "sinon";
-import * as vscode from "vscode";
 import * as config from "../../config";
 import { dataService } from "../../dataService";
 import { patternProvider } from "../../patternProvider";
@@ -16,10 +14,13 @@ import {
 } from "../util/mockFactory";
 import { stubMultiple } from "../util/stubHelpers";
 
+import * as sinon from "sinon";
+import * as vscode from "vscode";
+
 const stubConfig = (
   sandbox: sinon.SinonSandbox,
   itemsFilter: ItemsFilter = {},
-  isCancelled: boolean = false
+  isCancelled: boolean = false,
 ) => {
   stubMultiple(
     [
@@ -49,7 +50,7 @@ const stubConfig = (
         returns: "§&§",
       },
     ],
-    sandbox
+    sandbox,
   );
 };
 
@@ -72,7 +73,7 @@ const stubFetchingItems = (sandbox: sinon.SinonSandbox) => {
         returns: Promise.resolve(getDocumentSymbolItemSingleLineArray(1)),
       },
     ],
-    sandbox
+    sandbox,
   );
 };
 
@@ -85,13 +86,13 @@ export const getTestSetups = () => {
     reload1: () => {
       return stubMultiple(
         [{ object: dataService, method: "fetchConfig" }],
-        sandbox
+        sandbox,
       );
     },
     cancel1: () => {
       return stubMultiple(
         [{ object: dataService, method: "setIsCancelled" }],
-        sandbox
+        sandbox,
       );
     },
     fetchData1: () => {
@@ -128,7 +129,7 @@ export const getTestSetups = () => {
             method: "createWorkspaceData",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     fetchData5: () => {
@@ -164,7 +165,7 @@ export const getTestSetups = () => {
             returns: Promise.resolve(getDocumentSymbolItemSingleLineArray(1)),
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     fetchData7: () => {
@@ -176,7 +177,7 @@ export const getTestSetups = () => {
             method: "clearWorkspaceData",
           },
         ],
-        sandbox
+        sandbox,
       );
       stubFetchingItems(sandbox);
     },
@@ -198,11 +199,11 @@ export const getTestSetups = () => {
             object: vscode.commands,
             method: "executeCommand",
             returns: Promise.resolve(
-              getDocumentSymbolItemSingleLineArray(1, true)
+              getDocumentSymbolItemSingleLineArray(1, true),
             ),
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     fetchData9: () => {
@@ -225,7 +226,7 @@ export const getTestSetups = () => {
             returns: Promise.resolve(getDocumentSymbolItemSingleLineArray(1)),
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     fetchData10: () => {
@@ -252,7 +253,7 @@ export const getTestSetups = () => {
             returns: Promise.resolve(),
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     fetchData11: () => {
@@ -270,11 +271,11 @@ export const getTestSetups = () => {
                 kind: 1,
                 range: new vscode.Range(
                   new vscode.Position(0, 0),
-                  new vscode.Position(3, 0)
+                  new vscode.Position(3, 0),
                 ),
                 selectionRange: new vscode.Range(
                   new vscode.Position(0, 0),
-                  new vscode.Position(3, 0)
+                  new vscode.Position(3, 0),
                 ),
                 children: [],
               },
@@ -305,7 +306,7 @@ export const getTestSetups = () => {
             returns: Promise.resolve(),
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     isUriExistingInWorkspace1: () => {
@@ -317,7 +318,7 @@ export const getTestSetups = () => {
             returns: Promise.resolve(getItems()),
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     isUriExistingInWorkspace2: () => {
@@ -329,7 +330,7 @@ export const getTestSetups = () => {
             returns: Promise.resolve(getItems()),
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     fetchConfig1: () => {
@@ -347,7 +348,7 @@ export const getTestSetups = () => {
             method: "fetchConfig",
           },
         ],
-        sandbox
+        sandbox,
       );
       return expected;
     },
@@ -363,7 +364,7 @@ export const getTestSetups = () => {
             method: "fetchItemsFilter",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
   };

@@ -1,4 +1,3 @@
-import * as vscode from "vscode";
 import {
   fetchIcons,
   fetchItemsFilterPhrases,
@@ -13,6 +12,8 @@ import {
 } from "./types";
 import { utils } from "./utils";
 
+import * as vscode from "vscode";
+
 function getItemFilterPhraseForKind(symbolKind: number): string {
   return dataConverter.getItemsFilterPhrases()[symbolKind] as string;
 }
@@ -20,7 +21,7 @@ function getItemFilterPhraseForKind(symbolKind: number): string {
 function mapDataToQpData(data: Map<string, Item>): QuickPickItem[] {
   let qpData: QuickPickItem[] = [];
 
-  for (let item of data.values()) {
+  for (const item of data.values()) {
     if (dataConverter.getIsCancelled()) {
       qpData = [];
       break;
@@ -35,7 +36,7 @@ function mapDataToQpData(data: Map<string, Item>): QuickPickItem[] {
 
 function mapItemElementToQpItem(
   uri: vscode.Uri,
-  item: vscode.DocumentSymbol | vscode.Uri
+  item: vscode.DocumentSymbol | vscode.Uri,
 ): QuickPickItem {
   return item.hasOwnProperty("range")
     ? mapDocumentSymbolToQpItem(uri, item as vscode.DocumentSymbol)
@@ -44,7 +45,7 @@ function mapItemElementToQpItem(
 
 function mapDocumentSymbolToQpItem(
   uri: vscode.Uri,
-  symbol: vscode.DocumentSymbol
+  symbol: vscode.DocumentSymbol,
 ): QuickPickItem {
   const splitter = utils.getSplitter();
   const symbolName = symbol.name.split(splitter);
@@ -58,7 +59,7 @@ function mapDocumentSymbolToQpItem(
     itemFilterPhrase,
     name,
     symbol,
-    parent
+    parent,
   );
 
   return createQuickPickItem(
@@ -67,7 +68,7 @@ function mapDocumentSymbolToQpItem(
     symbol.range.start,
     symbol.range.end,
     label,
-    description
+    description,
   );
 }
 
@@ -75,7 +76,7 @@ function getDocumentSymbolToQpItemDescription(
   itemFilterPhrase: string,
   name: string,
   symbol: vscode.DocumentSymbol,
-  parent: string
+  parent: string,
 ) {
   return `${
     dataConverter.getShouldUseItemsFilterPhrases() && itemFilterPhrase
@@ -118,7 +119,7 @@ function createQuickPickItem(
   start: vscode.Position,
   end: vscode.Position,
   label: string,
-  description: string
+  description: string,
 ): QuickPickItem {
   return {
     uri,

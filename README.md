@@ -5,9 +5,6 @@ It allows user to easily navigate through files and symbols in the whole workspa
 
 It is the alternative for "Go to Symbol in Workspace..." - fully customizable.
 
-
-Version 2.0.0 - rewritten with several fancy new features.
-
 ## How it works
 
 The extension indexes the whole workspace. It scans both files and all symbols for each file according to set up patterns in settings. The scan can be initialized automatically on startup of Visual Studio Code or postponed till the first launch of extension.
@@ -24,9 +21,6 @@ Worth mentioning is the optimization of scanning algorithm. It queues every chan
 
 Additionally from version 2.0.0 there is a feature to scan the workspace only once and cache the results. Useful especially with the bigger projects.
 
-
-
-
 ![How it works](img/how-it-works.gif)
 
 ## Features
@@ -42,7 +36,6 @@ Additionally from version 2.0.0 there is a feature to scan the workspace only on
   status bar
 
   ![Notification in status bar](img/notification-status-bar.gif)
-
 
 
 * Debounce of search results while filtering
@@ -304,27 +297,3 @@ Default value: `true`
 
 Ability to decide whether selection in the active editor is put in the search.
 Default value: `true`
-
-## Release Notes
-
-Please check changelog for release details.
-
-## How to run it locally
-
-If you would like to run the extension locally, go through the following steps:
-
-  1. clone the repository
-  2. run `npm install` to install all dependencies
-  3. open `run and debug` view
-  4. run `run extension`
-  5. enjoy development!
-
-## Author
-
-[Kamil Bysiec](https://github.com/kbysiec)
-
-## Acknowledgment
-
-If you found it useful somehow, I would be grateful if you could leave a "Rating & Review" in Marketplace or/and leave a star in the project's GitHub repository.
-
-Thank you.

@@ -1,11 +1,12 @@
-import * as sinon from "sinon";
-import * as vscode from "vscode";
 import * as config from "../../config";
 import { patternProvider } from "../../patternProvider";
 import { ExcludeMode } from "../../types";
 import { getItems } from "../util/itemMockFactory";
 import { getTextDocumentStub } from "../util/stubFactory";
 import { stubMultiple } from "../util/stubHelpers";
+
+import * as sinon from "sinon";
+import * as vscode from "vscode";
 
 export const getTestSetups = () => {
   const sandbox = sinon.createSandbox();
@@ -24,7 +25,7 @@ export const getTestSetups = () => {
             returns: patterns,
           },
         ],
-        sandbox
+        sandbox,
       );
 
       return patterns;
@@ -45,7 +46,7 @@ export const getTestSetups = () => {
             returns: patterns,
           },
         ],
-        sandbox
+        sandbox,
       );
 
       return expected;
@@ -66,7 +67,7 @@ export const getTestSetups = () => {
             returns: patterns,
           },
         ],
-        sandbox
+        sandbox,
       );
 
       return expected;
@@ -87,7 +88,7 @@ export const getTestSetups = () => {
             returns: patterns,
           },
         ],
-        sandbox
+        sandbox,
       );
 
       return expected;
@@ -108,7 +109,7 @@ export const getTestSetups = () => {
             returns: patterns,
           },
         ],
-        sandbox
+        sandbox,
       );
 
       return expected;
@@ -129,7 +130,7 @@ export const getTestSetups = () => {
             returns: patterns,
           },
         ],
-        sandbox
+        sandbox,
       );
 
       return expected;
@@ -149,7 +150,7 @@ export const getTestSetups = () => {
             returns: [],
           },
         ],
-        sandbox
+        sandbox,
       );
 
       return expected;
@@ -181,7 +182,7 @@ export const getTestSetups = () => {
             returns: [],
           },
         ],
-        sandbox
+        sandbox,
       );
       return expected;
     },
@@ -212,7 +213,7 @@ export const getTestSetups = () => {
             returns: [],
           },
         ],
-        sandbox
+        sandbox,
       );
       return expected;
     },
@@ -243,7 +244,7 @@ export const getTestSetups = () => {
             returns: [],
           },
         ],
-        sandbox
+        sandbox,
       );
       return expected;
     },
@@ -274,7 +275,7 @@ export const getTestSetups = () => {
             returns: [],
           },
         ],
-        sandbox
+        sandbox,
       );
       return expected;
     },
@@ -316,7 +317,7 @@ export const getTestSetups = () => {
               "# Project\ndist\nout\n\n# IDE config files\n\n.vscode\n.history\n\n",
           },
         ],
-        sandbox
+        sandbox,
       );
       return expected;
     },
@@ -347,7 +348,7 @@ export const getTestSetups = () => {
             returns: [],
           },
         ],
-        sandbox
+        sandbox,
       );
       return expected;
     },
@@ -389,7 +390,7 @@ export const getTestSetups = () => {
             returns: "",
           },
         ],
-        sandbox
+        sandbox,
       );
       return expected;
     },

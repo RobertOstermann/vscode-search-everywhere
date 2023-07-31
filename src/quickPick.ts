@@ -1,4 +1,3 @@
-import * as vscode from "vscode";
 import {
   fetchHelpPhrase,
   fetchItemsFilterPhrases,
@@ -9,6 +8,9 @@ import {
 } from "./config";
 import { ItemsFilterPhrases, QuickPickItem } from "./types";
 import { utils } from "./utils";
+
+import * as vscode from "vscode";
+
 const debounce = require("debounce");
 
 function disposeOnDidChangeValueEventListeners(): void {
@@ -27,10 +29,10 @@ function registerOnDidChangeValueEventListeners(): void {
 function registerOnDidChangeValueWithDebounceEventListeners(): void {
   const control = quickPick.getControl();
   const onDidChangeValueClearingEventListener = control.onDidChangeValue(
-    handleDidChangeValueClearing
+    handleDidChangeValueClearing,
   );
   const onDidChangeValueEventListener = control.onDidChangeValue(
-    debounce(handleDidChangeValue, 400)
+    debounce(handleDidChangeValue, 400),
   );
   const onDidChangeValueEventListeners =
     quickPick.getOnDidChangeValueEventListeners();
@@ -68,7 +70,7 @@ function loadItemsForFilterPhrase(qpItem: QuickPickItem): void {
 
 async function openItem(
   qpItem: QuickPickItem,
-  viewColumn: vscode.ViewColumn = vscode.ViewColumn.Active
+  viewColumn: vscode.ViewColumn = vscode.ViewColumn.Active,
 ): Promise<void> {
   const uriOrFileName =
     qpItem.uri!.scheme === "file" ? qpItem.uri!.path : qpItem.uri;
@@ -83,18 +85,18 @@ async function openItem(
 function selectQpItem(editor: vscode.TextEditor, qpItem: QuickPickItem): void {
   editor.selection = getSelectionForQpItem(
     qpItem,
-    fetchShouldHighlightSymbol()
+    fetchShouldHighlightSymbol(),
   );
 
   editor.revealRange(
     qpItem.range as vscode.Range,
-    vscode.TextEditorRevealType.Default
+    vscode.TextEditorRevealType.Default,
   );
 }
 
 function getSelectionForQpItem(
   qpItem: QuickPickItem,
-  shouldHighlightSymbol: boolean
+  shouldHighlightSymbol: boolean,
 ): vscode.Selection {
   const { range } = qpItem;
   const start = new vscode.Position(range!.start.line, range!.start.character);
@@ -118,7 +120,7 @@ function collectHelpItems(): QuickPickItem[] {
 
 function getHelpItemForKind(
   symbolKind: string,
-  itemFilterPhrase: string
+  itemFilterPhrase: string,
 ): QuickPickItem {
   return {
     label: `${quickPick.getHelpPhrase()} Type ${itemFilterPhrase} for limit results to ${
@@ -270,7 +272,7 @@ function loadHelpItems() {
 
 function addSeparatorItemForEachSymbolKind(items: QuickPickItem[]) {
   const sortedItems = utils.groupBy(items, (item: QuickPickItem) =>
-    item.symbolKind.toString()
+    item.symbolKind.toString(),
   );
   const sortedItemsEntries = sortedItems.entries();
 
@@ -307,7 +309,7 @@ function setPlaceholder(isBusy: boolean): void {
     ? `${
         helpPhrase
           ? `Type ${helpPhrase} for help or start typing file or symbol name...`
-          : `Help phrase not set. Start typing file or symbol name...`
+          : "Help phrase not set. Start typing file or symbol name..."
       }`
     : "Start typing file or symbol name...";
 }
@@ -346,7 +348,7 @@ function reinitQpItemsButton(data: QuickPickItem[]) {
           iconPath: new vscode.ThemeIcon("open-preview"),
           tooltip: "Open to the side",
         },
-      ])
+      ]),
   );
 }
 
@@ -355,7 +357,7 @@ function getShouldUseItemsFilterPhrases() {
 }
 
 function setShouldUseItemsFilterPhrases(
-  newShouldUseItemsFilterPhrases: boolean
+  newShouldUseItemsFilterPhrases: boolean,
 ) {
   shouldUseItemsFilterPhrases = newShouldUseItemsFilterPhrases;
 }
@@ -397,7 +399,7 @@ function getOnDidChangeValueEventListeners() {
 }
 
 function setOnDidChangeValueEventListeners(
-  newOnDidChangeValueEventListeners: vscode.Disposable[]
+  newOnDidChangeValueEventListeners: vscode.Disposable[],
 ) {
   onDidChangeValueEventListeners = newOnDidChangeValueEventListeners;
 }

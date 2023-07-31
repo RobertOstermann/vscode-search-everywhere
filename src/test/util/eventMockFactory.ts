@@ -1,8 +1,9 @@
-import * as sinon from "sinon";
-import * as vscode from "vscode";
 import { ExcludeMode, QuickPickItem } from "../../types";
 import { getQpItem } from "./qpItemMockFactory";
 import { getTextDocumentStub } from "./stubFactory";
+
+import * as sinon from "sinon";
+import * as vscode from "vscode";
 
 export const getWorkspaceFoldersChangeEvent = (flag: boolean) => {
   return flag
@@ -28,7 +29,7 @@ export const getConfigurationChangeEvent = (
   isExcluded: boolean = true,
   excludeMode: ExcludeMode = ExcludeMode.SearchEverywhere,
   flagForFilesExclude: boolean = false,
-  flagForSearchExclude: boolean = false
+  flagForSearchExclude: boolean = false,
 ) => {
   const defaultSection = "searchEverywhere";
 
@@ -49,7 +50,7 @@ export const getConfigurationChangeEvent = (
 };
 
 export const getTextDocumentChangeEvent = (
-  shouldContentBeChanged: boolean = false
+  shouldContentBeChanged: boolean = false,
 ): vscode.TextDocumentChangeEvent => {
   const textDocumentChangeEvent = {
     document: getTextDocumentStub(),
@@ -116,7 +117,7 @@ export const getFileWatcherStub = () => {
 };
 
 export const getQuickPickOnDidChangeValueEventListeners = (
-  count: number = 2
+  count: number = 2,
 ): vscode.Disposable[] => {
   const array: vscode.Disposable[] = [];
   for (let i = 0; i < count; i++) {

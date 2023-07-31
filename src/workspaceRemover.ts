@@ -1,7 +1,8 @@
-import * as vscode from "vscode";
 import { updateData } from "./cache";
 import { DetailedActionType, QuickPickItem } from "./types";
 import { workspaceCommon as common } from "./workspaceCommon";
+
+import * as vscode from "vscode";
 
 function removeUri(data: QuickPickItem[], uri: vscode.Uri): QuickPickItem[] {
   return data.filter((qpItem: QuickPickItem) => qpItem.uri.path !== uri.path);
@@ -15,7 +16,7 @@ function removeFolder(data: QuickPickItem[], uri: vscode.Uri) {
 
 export function removeFromCacheByPath(
   uri: vscode.Uri,
-  detailedActionType: DetailedActionType
+  detailedActionType: DetailedActionType,
 ) {
   let data = common.getData();
 
@@ -28,7 +29,7 @@ export function removeFromCacheByPath(
     [DetailedActionType.RenameOrMoveDirectory]: removeFolder.bind(
       null,
       data,
-      uri
+      uri,
     ),
   };
   data = removeFnByDetailedActionType[detailedActionType]();

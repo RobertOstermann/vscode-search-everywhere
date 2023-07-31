@@ -4,16 +4,18 @@
   https://github.com/rpeshkov/vscode-testcov
 */
 
+import CoverageRunner, { ITestRunnerOptions } from "./coverageRunner";
+
 import * as fs from "fs";
 import * as glob from "glob";
 import * as path from "path";
-import CoverageRunner, { ITestRunnerOptions } from "./coverageRunner";
 
 const Mocha = require("mocha");
 
 // Linux: prevent a weird NPE when mocha on Linux requires the window size from the TTY
 // Since we are not running in a tty environment, we just implement he method statically
 const tty = require("tty");
+
 if (!tty.getWindowSize) {
   tty.getWindowSize = (): number[] => {
     return [80, 75];
@@ -21,7 +23,7 @@ if (!tty.getWindowSize) {
 }
 
 let mocha = new Mocha({
-  timeout: 4000
+  timeout: 4000,
 });
 
 mocha.color(true);
@@ -36,7 +38,7 @@ function readCoverageConfig(testsRoot: string): ITestRunnerOptions | undefined {
     "..",
     "..",
     "..",
-    "coverage-report-config.json"
+    "coverage-report-config.json",
   );
   if (fs.existsSync(coverageConfigPath)) {
     const configContent = fs.readFileSync(coverageConfigPath, "utf-8");
@@ -65,7 +67,7 @@ function run(testsRoot: string, clb: any): any {
       try {
         // Fill into Mocha
         files.forEach(
-          (f): Mocha => mocha.addFile(path.join(testsRoot, "..", f))
+          (f): Mocha => mocha.addFile(path.join(testsRoot, "..", f)),
         );
         // Run the tests
         let failureCount = 0;
@@ -77,7 +79,7 @@ function run(testsRoot: string, clb: any): any {
       } catch (error) {
         return clb(error);
       }
-    }
+    },
   );
 }
 

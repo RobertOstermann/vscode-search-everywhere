@@ -1,7 +1,8 @@
-import { assert } from "chai";
 import { dataService } from "../../dataService";
 import { getTestSetups } from "../testSetup/dataService.testSetup";
 import { getItem, getItems } from "../util/itemMockFactory";
+
+import { assert } from "chai";
 
 type SetupsType = ReturnType<typeof getTestSetups>;
 
@@ -33,7 +34,7 @@ describe("DataService", () => {
   });
 
   describe("fetchData", () => {
-    it(`1: should return workspace data when exclude patterns array is empty`, async () => {
+    it("1: should return workspace data when exclude patterns array is empty", async () => {
       setups.fetchData1();
       const items = await dataService.fetchData();
 
@@ -71,42 +72,42 @@ describe("DataService", () => {
       assert.equal(items.count, 4);
     });
 
-    it(`6: should repeat trial to get symbols for file if returned undefined`, async () => {
+    it("6: should repeat trial to get symbols for file if returned undefined", async () => {
       const [getSymbolsForUriStub] = setups.fetchData6();
       await dataService.fetchData();
 
       assert.equal(getSymbolsForUriStub.callCount, 10);
     });
 
-    it(`7: should return empty array of items with workspace data if fetching is canceled`, async () => {
+    it("7: should return empty array of items with workspace data if fetching is canceled", async () => {
       setups.fetchData7();
       const items = await dataService.fetchData();
 
       assert.equal(items.count, 0);
     });
 
-    it(`8: should return array of items filtered by itemsFilter with defined allowed kinds`, async () => {
+    it("8: should return array of items filtered by itemsFilter with defined allowed kinds", async () => {
       setups.fetchData8();
       const items = await dataService.fetchData();
 
       assert.equal(items.count, 1);
     });
 
-    it(`9: should return array of items filtered by itemsFilter with defined ignored kinds`, async () => {
+    it("9: should return array of items filtered by itemsFilter with defined ignored kinds", async () => {
       setups.fetchData9();
       const items = await dataService.fetchData();
 
       assert.equal(items.count, 1);
     });
 
-    it(`10: should return array of items filtered by itemsFilter with defined ignored names`, async () => {
+    it("10: should return array of items filtered by itemsFilter with defined ignored names", async () => {
       setups.fetchData10();
       const items = await dataService.fetchData();
 
       assert.equal(items.count, 0);
     });
 
-    it(`11: should not include uri if already exists in elements`, async () => {
+    it("11: should not include uri if already exists in elements", async () => {
       setups.fetchData11();
       const items = await dataService.fetchData();
 

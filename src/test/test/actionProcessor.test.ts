@@ -1,8 +1,9 @@
-import { assert } from "chai";
-import * as sinon from "sinon";
 import { actionProcessor } from "../../actionProcessor";
 import { getTestSetups } from "../testSetup/actionProcessor.testSetup";
 import { getAction } from "../util/mockFactory";
+
+import { assert } from "chai";
+import * as sinon from "sinon";
 
 type SetupsType = ReturnType<typeof getTestSetups>;
 

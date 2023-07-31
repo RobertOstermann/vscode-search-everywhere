@@ -1,6 +1,7 @@
-import { assert } from "chai";
 import * as config from "../../config";
 import { getTestSetups } from "../testSetup/config.testSetup";
+
+import { assert } from "chai";
 
 type SetupsType = ReturnType<typeof getTestSetups>;
 
@@ -22,7 +23,7 @@ describe("Config", () => {
 
       assert.equal(
         config.fetchShouldDisplayNotificationInStatusBar(),
-        configuration[section][key]
+        configuration[section][key],
       );
     });
   });
@@ -34,7 +35,7 @@ describe("Config", () => {
 
       assert.equal(
         config.fetchShouldInitOnStartup(),
-        configuration[section][key]
+        configuration[section][key],
       );
     });
   });
@@ -46,7 +47,7 @@ describe("Config", () => {
 
       assert.equal(
         config.fetchShouldHighlightSymbol(),
-        configuration[section][key]
+        configuration[section][key],
       );
     });
   });
@@ -58,7 +59,7 @@ describe("Config", () => {
 
       assert.equal(
         config.fetchShouldUseDebounce(),
-        configuration[section][key]
+        configuration[section][key],
       );
     });
   });
@@ -88,7 +89,7 @@ describe("Config", () => {
 
       assert.equal(
         config.fetchShouldUseItemsFilterPhrases(),
-        configuration[section][key]
+        configuration[section][key],
       );
     });
   });
@@ -100,7 +101,7 @@ describe("Config", () => {
 
       assert.equal(
         config.fetchItemsFilterPhrases(),
-        configuration[section][key]
+        configuration[section][key],
       );
     });
   });
@@ -121,7 +122,7 @@ describe("Config", () => {
 
       assert.equal(
         config.fetchShouldItemsBeSorted(),
-        configuration[section][key]
+        configuration[section][key],
       );
     });
   });
@@ -133,7 +134,7 @@ describe("Config", () => {
 
       assert.equal(
         config.fetchShouldSearchSelection(),
-        configuration[section][key]
+        configuration[section][key],
       );
     });
   });
@@ -191,7 +192,7 @@ describe("Config", () => {
 
       assert.equal(
         config.fetchShouldWorkspaceDataBeCached(),
-        configuration[section][key]
+        configuration[section][key],
       );
     });
   });
@@ -203,7 +204,7 @@ describe("Config", () => {
 
       assert.equal(
         config.fetchShouldSearchSelection(),
-        configuration[section][key]
+        configuration[section][key],
       );
     });
   });

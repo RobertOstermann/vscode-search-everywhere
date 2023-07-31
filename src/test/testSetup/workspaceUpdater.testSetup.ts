@@ -1,4 +1,3 @@
-import * as sinon from "sinon";
 import * as cache from "../../cache";
 import { utils } from "../../utils";
 import { workspaceCommon as common } from "../../workspaceCommon";
@@ -8,6 +7,8 @@ import {
   getQpItemsSymbolAndUri,
 } from "../util/qpItemMockFactory";
 import { stubMultiple } from "../util/stubHelpers";
+
+import * as sinon from "sinon";
 
 export const getTestSetups = () => {
   const sandbox = sinon.createSandbox();
@@ -33,7 +34,7 @@ export const getTestSetups = () => {
             method: "printErrorMessage",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     updateCacheByPath2: () => {
@@ -54,7 +55,7 @@ export const getTestSetups = () => {
             returns: [],
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     updateCacheByPath3: () => {
@@ -75,7 +76,7 @@ export const getTestSetups = () => {
             returns: [],
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     updateCacheByPath4: () => {
@@ -96,7 +97,7 @@ export const getTestSetups = () => {
             returns: [],
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     updateCacheByPath5: () => {
@@ -117,7 +118,7 @@ export const getTestSetups = () => {
             returns: getQpItems(2, "./fake-new/"),
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     updateCacheByPath6: () => {
@@ -138,7 +139,7 @@ export const getTestSetups = () => {
             returns: [],
           },
         ],
-        sandbox
+        sandbox,
       );
     },
   };

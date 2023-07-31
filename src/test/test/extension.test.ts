@@ -1,8 +1,9 @@
+import * as extension from "../../extension";
+import { getTestSetups } from "../testSetup/extension.testSetup";
+
 import { assert } from "chai";
 import * as sinon from "sinon";
 import * as vscode from "vscode";
-import * as extension from "../../extension";
-import { getTestSetups } from "../testSetup/extension.testSetup";
 
 type SetupsType = ReturnType<typeof getTestSetups>;
 

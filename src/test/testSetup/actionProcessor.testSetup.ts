@@ -1,11 +1,12 @@
-import * as sinon from "sinon";
-import * as vscode from "vscode";
 import { actionProcessor } from "../../actionProcessor";
 import * as actionProcessorEventsEmitter from "../../actionProcessorEventsEmitter";
 import { Action, ActionType } from "../../types";
 import { utils } from "../../utils";
 import { getAction, getActions, getEventEmitter } from "../util/mockFactory";
 import { stubMultiple } from "../util/stubHelpers";
+
+import * as sinon from "sinon";
+import * as vscode from "vscode";
 
 export const getTestSetups = () => {
   const sandbox = sinon.createSandbox();
@@ -22,7 +23,7 @@ export const getTestSetups = () => {
             method: "add",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     register2: () => {
@@ -33,7 +34,7 @@ export const getTestSetups = () => {
             method: "process",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     register3: () => {
@@ -49,7 +50,7 @@ export const getTestSetups = () => {
             returns: true,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     register4: () => {
@@ -63,7 +64,7 @@ export const getTestSetups = () => {
           "test action 3",
           3,
           true,
-          vscode.Uri.file("./#")
+          vscode.Uri.file("./#"),
         ),
         getAction(ActionType.Update, "test action 4", 4, true, uri),
       ];
@@ -92,7 +93,7 @@ export const getTestSetups = () => {
             returns: new Map<string, Action[]>(),
           },
         ],
-        sandbox
+        sandbox,
       );
 
       return {
@@ -107,7 +108,7 @@ export const getTestSetups = () => {
         "test action 4",
         undefined,
         true,
-        uri
+        uri,
       );
       const queue = [
         getAction(ActionType.Update, "test action 1", 1, true, uri),
@@ -116,14 +117,14 @@ export const getTestSetups = () => {
           "test action 2",
           2,
           true,
-          vscode.Uri.file("./test2/#")
+          vscode.Uri.file("./test2/#"),
         ),
         getAction(
           ActionType.Update,
           "test action 3",
           3,
           true,
-          vscode.Uri.file("./test3/#")
+          vscode.Uri.file("./test3/#"),
         ),
       ];
 
@@ -136,7 +137,7 @@ export const getTestSetups = () => {
             isNotMethod: true,
           },
         ],
-        sandbox
+        sandbox,
       );
 
       return { action, queue };
@@ -168,7 +169,7 @@ export const getTestSetups = () => {
             returns: groupedActions,
           },
         ],
-        sandbox
+        sandbox,
       );
 
       return { action, eventEmitter };
@@ -200,7 +201,7 @@ export const getTestSetups = () => {
             returns: groupedActions,
           },
         ],
-        sandbox
+        sandbox,
       );
       return { action, eventEmitter };
     },
@@ -212,7 +213,7 @@ export const getTestSetups = () => {
         "test action 2",
         3,
         true,
-        uri
+        uri,
       );
 
       stubMultiple(
@@ -225,7 +226,7 @@ export const getTestSetups = () => {
               undefined,
               ActionType.Update,
               undefined,
-              true
+              true,
             ),
             isNotMethod: true,
           },
@@ -236,7 +237,7 @@ export const getTestSetups = () => {
             isNotMethod: true,
           },
         ],
-        sandbox
+        sandbox,
       );
       return { action, eventEmitter };
     },
@@ -266,7 +267,7 @@ export const getTestSetups = () => {
             returns: groupedActions,
           },
         ],
-        sandbox
+        sandbox,
       );
       return { action, queue };
     },
@@ -295,7 +296,7 @@ export const getTestSetups = () => {
             returns: groupedActions,
           },
         ],
-        sandbox
+        sandbox,
       );
 
       return { action, queue };
@@ -307,7 +308,7 @@ export const getTestSetups = () => {
         "test action 3",
         3,
         true,
-        uri
+        uri,
       );
 
       const queue = [
@@ -317,7 +318,7 @@ export const getTestSetups = () => {
           "test action 2",
           2,
           true,
-          vscode.Uri.file("./#")
+          vscode.Uri.file("./#"),
         ),
       ];
 
@@ -330,7 +331,7 @@ export const getTestSetups = () => {
             isNotMethod: true,
           },
         ],
-        sandbox
+        sandbox,
       );
       return { action, queue };
     },

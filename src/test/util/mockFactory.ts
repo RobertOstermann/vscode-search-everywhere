@@ -1,5 +1,3 @@
-import * as sinon from "sinon";
-import * as vscode from "vscode";
 import {
   Action,
   ActionType,
@@ -8,6 +6,9 @@ import {
   Item,
   WorkspaceData,
 } from "../../types";
+
+import * as sinon from "sinon";
+import * as vscode from "vscode";
 
 export const getExtensionContext = (): vscode.ExtensionContext => {
   return {
@@ -125,7 +126,7 @@ export const getAction = (
   trigger: string = "test trigger",
   id: number = 0,
   withUri: boolean = false,
-  uri: vscode.Uri = vscode.Uri.file(`./fake/fake-${id}.ts`)
+  uri: vscode.Uri = vscode.Uri.file(`./fake/fake-${id}.ts`),
 ): Action => {
   return {
     type: type || getRandomActionType(),
@@ -142,7 +143,7 @@ export const getActions = (
   type?: ActionType,
   trigger?: string,
   withUri?: boolean,
-  uri?: vscode.Uri
+  uri?: vscode.Uri,
 ): Action[] => {
   const array: Action[] = [];
 
@@ -166,7 +167,7 @@ export const getProgress = (value: number = 0) => ({
 export const getItemsFilter = (
   allowedKinds: number[] = [],
   ignoredKinds: number[] = [],
-  ignoredNames: string[] = []
+  ignoredNames: string[] = [],
 ) => {
   return {
     allowedKinds,

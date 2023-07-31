@@ -1,4 +1,3 @@
-import * as vscode from "vscode";
 import {
   fetchExclude,
   fetchExcludeMode,
@@ -6,6 +5,8 @@ import {
   fetchInclude,
 } from "./config";
 import { ExcludeMode } from "./types";
+
+import * as vscode from "vscode";
 
 const endLineRegex = /[^\r\n]+/g;
 const gitignoreFilePattern = "**/.gitignore";
@@ -71,7 +72,7 @@ async function getExcludePatterns(): Promise<string> {
   };
 
   return getExcludePatternsAsString(
-    excludePatterns[patternProvider.getExcludeMode()]
+    excludePatterns[patternProvider.getExcludeMode()],
   );
 }
 
@@ -132,7 +133,7 @@ function getFilesAndSearchExcludePatterns() {
 }
 
 function setFilesAndSearchExcludePatterns(
-  newFilesAndSearchExcludePatterns: string[]
+  newFilesAndSearchExcludePatterns: string[],
 ) {
   filesAndSearchExcludePatterns = newFilesAndSearchExcludePatterns;
 }

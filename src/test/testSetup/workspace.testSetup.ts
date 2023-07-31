@@ -1,5 +1,3 @@
-import * as sinon from "sinon";
-import * as vscode from "vscode";
 import * as actionProcessorEventsEmitter from "../../actionProcessorEventsEmitter";
 import * as cache from "../../cache";
 import * as config from "../../config";
@@ -13,6 +11,9 @@ import * as events from "../../workspaceEventsEmitter";
 import { getItems } from "../util/itemMockFactory";
 import { getEventEmitter } from "../util/mockFactory";
 import { stubMultiple } from "../util/stubHelpers";
+
+import * as sinon from "sinon";
+import * as vscode from "vscode";
 
 export const getTestSetups = () => {
   const sandbox = sinon.createSandbox();
@@ -37,7 +38,7 @@ export const getTestSetups = () => {
             method: "fetchConfig",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     init2: () => {
@@ -56,7 +57,7 @@ export const getTestSetups = () => {
             method: "fetchConfig",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     init3: () => {
@@ -75,7 +76,7 @@ export const getTestSetups = () => {
             method: "setWorkspaceFoldersCommonPath",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     index1: () => {
@@ -90,7 +91,7 @@ export const getTestSetups = () => {
             method: "clear",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     index2: () => {
@@ -105,7 +106,7 @@ export const getTestSetups = () => {
             method: "clear",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     removeDataForUnsavedUris1: () => {
@@ -128,7 +129,7 @@ export const getTestSetups = () => {
             callsFake: (paths: string[]) => (notSavedUris = paths),
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     removeDataForUnsavedUris2: () => {
@@ -156,7 +157,7 @@ export const getTestSetups = () => {
             callsFake: () => (notSavedUris = []),
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     registerEventListeners1: () => {
@@ -191,7 +192,7 @@ export const getTestSetups = () => {
             method: "onWillExecuteAction",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     getData1: () => {
@@ -203,7 +204,7 @@ export const getTestSetups = () => {
             returns: getItems(),
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     shouldReindexOnConfigurationChange1: () => {
@@ -215,7 +216,7 @@ export const getTestSetups = () => {
             returns: ExcludeMode.SearchEverywhere,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     shouldReindexOnConfigurationChange2: () => {
@@ -227,7 +228,7 @@ export const getTestSetups = () => {
             returns: ExcludeMode.SearchEverywhere,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     shouldReindexOnConfigurationChange3: () => {
@@ -239,7 +240,7 @@ export const getTestSetups = () => {
             returns: ExcludeMode.SearchEverywhere,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     shouldReindexOnConfigurationChange4: () => {
@@ -251,7 +252,7 @@ export const getTestSetups = () => {
             returns: ExcludeMode.FilesAndSearch,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     shouldReindexOnConfigurationChange5: () => {
@@ -263,7 +264,7 @@ export const getTestSetups = () => {
             returns: ExcludeMode.FilesAndSearch,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleDidChangeConfiguration1: () => {
@@ -303,7 +304,7 @@ export const getTestSetups = () => {
             method: "fetchExcludeMode",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleDidChangeConfiguration2: () => {
@@ -332,7 +333,7 @@ export const getTestSetups = () => {
             method: "clearConfig",
           },
         ],
-        sandbox
+        sandbox,
       );
 
       return eventEmitter;
@@ -368,7 +369,7 @@ export const getTestSetups = () => {
             method: "clearConfig",
           },
         ],
-        sandbox
+        sandbox,
       );
 
       return eventEmitter;
@@ -404,7 +405,7 @@ export const getTestSetups = () => {
             method: "clearConfig",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleDidChangeConfiguration5: () => {
@@ -433,7 +434,7 @@ export const getTestSetups = () => {
             returns: false,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleDidChangeWorkspaceFolders1: () => {
@@ -449,7 +450,7 @@ export const getTestSetups = () => {
             returns: true,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleDidChangeWorkspaceFolders2: () => {
@@ -465,7 +466,7 @@ export const getTestSetups = () => {
             returns: false,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleDidChangeTextDocument1: () => {
@@ -481,7 +482,7 @@ export const getTestSetups = () => {
             returns: Promise.resolve(true),
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleDidChangeTextDocument2: () => {
@@ -497,7 +498,7 @@ export const getTestSetups = () => {
             returns: Promise.resolve(false),
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleDidChangeTextDocument3: () => {
@@ -513,7 +514,7 @@ export const getTestSetups = () => {
             returns: Promise.resolve(true),
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleDidChangeTextDocument4: () => {
@@ -541,7 +542,7 @@ export const getTestSetups = () => {
             returns: Promise.resolve(true),
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleDidRenameFiles1: () => {
@@ -557,7 +558,7 @@ export const getTestSetups = () => {
             returns: false,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleDidRenameFiles2: () => {
@@ -573,7 +574,7 @@ export const getTestSetups = () => {
             returns: true,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleDidCreateFiles1: () => {
@@ -589,7 +590,7 @@ export const getTestSetups = () => {
             returns: false,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleDidCreateFiles2: () => {
@@ -605,7 +606,7 @@ export const getTestSetups = () => {
             returns: true,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleDidCreateFiles3: () => {
@@ -633,7 +634,7 @@ export const getTestSetups = () => {
             returns: true,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleDidDeleteFiles1: () => {
@@ -649,7 +650,7 @@ export const getTestSetups = () => {
             returns: false,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleDidDeleteFiles2: () => {
@@ -665,7 +666,7 @@ export const getTestSetups = () => {
             returns: true,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleDidSaveTextDocument1: () => {
@@ -688,7 +689,7 @@ export const getTestSetups = () => {
             callsFake: (paths: string[]) => (notSavedUris = paths),
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleWillActionProcessorProcessing1: () => {
@@ -702,7 +703,7 @@ export const getTestSetups = () => {
             isNotMethod: true,
           },
         ],
-        sandbox
+        sandbox,
       );
 
       return eventEmitter;
@@ -718,7 +719,7 @@ export const getTestSetups = () => {
             isNotMethod: true,
           },
         ],
-        sandbox
+        sandbox,
       );
 
       return eventEmitter;
@@ -734,7 +735,7 @@ export const getTestSetups = () => {
             isNotMethod: true,
           },
         ],
-        sandbox
+        sandbox,
       );
 
       return eventEmitter;

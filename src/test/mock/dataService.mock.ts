@@ -7,11 +7,11 @@ export const flatDocumentSymbolItems: vscode.DocumentSymbol[] = [
     kind: 1,
     range: new vscode.Range(
       new vscode.Position(0, 0),
-      new vscode.Position(0, 0)
+      new vscode.Position(0, 0),
     ),
     selectionRange: new vscode.Range(
       new vscode.Position(0, 0),
-      new vscode.Position(0, 0)
+      new vscode.Position(0, 0),
     ),
     children: [],
   },
@@ -21,11 +21,11 @@ export const flatDocumentSymbolItems: vscode.DocumentSymbol[] = [
     kind: 1,
     range: new vscode.Range(
       new vscode.Position(0, 0),
-      new vscode.Position(0, 0)
+      new vscode.Position(0, 0),
     ),
     selectionRange: new vscode.Range(
       new vscode.Position(0, 0),
-      new vscode.Position(0, 0)
+      new vscode.Position(0, 0),
     ),
     children: [],
   },
@@ -35,11 +35,11 @@ export const flatDocumentSymbolItems: vscode.DocumentSymbol[] = [
     kind: 1,
     range: new vscode.Range(
       new vscode.Position(0, 0),
-      new vscode.Position(0, 0)
+      new vscode.Position(0, 0),
     ),
     selectionRange: new vscode.Range(
       new vscode.Position(0, 0),
-      new vscode.Position(0, 0)
+      new vscode.Position(0, 0),
     ),
     children: [],
   },
@@ -49,11 +49,11 @@ export const flatDocumentSymbolItems: vscode.DocumentSymbol[] = [
     kind: 1,
     range: new vscode.Range(
       new vscode.Position(0, 0),
-      new vscode.Position(0, 0)
+      new vscode.Position(0, 0),
     ),
     selectionRange: new vscode.Range(
       new vscode.Position(0, 0),
-      new vscode.Position(0, 0)
+      new vscode.Position(0, 0),
     ),
     children: [],
   },

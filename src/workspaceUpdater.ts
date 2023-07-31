@@ -1,8 +1,9 @@
-import * as vscode from "vscode";
 import { updateData } from "./cache";
 import { DetailedActionType, QuickPickItem } from "./types";
 import { utils } from "./utils";
 import { workspaceCommon as common } from "./workspaceCommon";
+
+import * as vscode from "vscode";
 
 async function updateUri(uri: vscode.Uri) {
   const dataForUri = await common.downloadData([uri]);
@@ -15,7 +16,7 @@ function updateFolder(uri: vscode.Uri, oldUri: vscode.Uri) {
   const updatedData = utils.updateQpItemsWithNewDirectoryPath(
     data,
     oldUri!,
-    uri
+    uri,
   );
   updateData(updatedData);
 }
@@ -28,7 +29,7 @@ function mergeWithDataFromCache(data: QuickPickItem[]): QuickPickItem[] {
 export async function updateCacheByPath(
   uri: vscode.Uri,
   detailedActionType: DetailedActionType,
-  oldUri?: vscode.Uri
+  oldUri?: vscode.Uri,
 ) {
   try {
     const updateFnByDetailedActionType: { [key: string]: Function } = {
@@ -39,7 +40,7 @@ export async function updateCacheByPath(
       [DetailedActionType.RenameOrMoveDirectory]: updateFolder.bind(
         null,
         uri,
-        oldUri!
+        oldUri!,
       ),
     };
 

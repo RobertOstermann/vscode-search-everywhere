@@ -1,10 +1,11 @@
-import * as sinon from "sinon";
-import * as vscode from "vscode";
 import { utils } from "../../utils";
 import { getItem } from "../util/itemMockFactory";
 import { getWorkspaceData } from "../util/mockFactory";
 import { getQpItem } from "../util/qpItemMockFactory";
 import { stubMultiple } from "../util/stubHelpers";
+
+import * as sinon from "sinon";
+import * as vscode from "vscode";
 
 export const getTestSetups = () => {
   const sandbox = sinon.createSandbox();
@@ -29,7 +30,7 @@ export const getTestSetups = () => {
           isNotMethod: true,
         },
       ],
-      sandbox
+      sandbox,
     );
   };
 
@@ -57,7 +58,7 @@ export const getTestSetups = () => {
             method: "showInformationMessage",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     printNoFolderOpenedMessage2: () => {
@@ -68,7 +69,7 @@ export const getTestSetups = () => {
             method: "showInformationMessage",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     printStatsMessage1: () => {
@@ -79,7 +80,7 @@ export const getTestSetups = () => {
             method: "showInformationMessage",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     clearWorkspaceData1: () => {
@@ -95,11 +96,11 @@ export const getTestSetups = () => {
                 kind: 1,
                 range: new vscode.Range(
                   new vscode.Position(0, 0),
-                  new vscode.Position(3, 0)
+                  new vscode.Position(3, 0),
                 ),
                 selectionRange: new vscode.Range(
                   new vscode.Position(0, 0),
-                  new vscode.Position(3, 0)
+                  new vscode.Position(3, 0),
                 ),
                 children: [],
               },
@@ -138,7 +139,7 @@ export const getTestSetups = () => {
             returns: "/common/path",
           },
         ],
-        sandbox
+        sandbox,
       );
       return {
         item: getItem("/common/path/folder1/subfolder/"),
@@ -174,11 +175,11 @@ export const getTestSetups = () => {
                 kind: 1,
                 range: new vscode.Range(
                   new vscode.Position(0, 0),
-                  new vscode.Position(3, 0)
+                  new vscode.Position(3, 0),
                 ),
                 selectionRange: new vscode.Range(
                   new vscode.Position(0, 0),
-                  new vscode.Position(3, 0)
+                  new vscode.Position(3, 0),
                 ),
                 children: [],
               },
@@ -188,11 +189,11 @@ export const getTestSetups = () => {
                 kind: 1,
                 range: new vscode.Range(
                   new vscode.Position(4, 0),
-                  new vscode.Position(5, 0)
+                  new vscode.Position(5, 0),
                 ),
                 selectionRange: new vscode.Range(
                   new vscode.Position(4, 0),
-                  new vscode.Position(5, 0)
+                  new vscode.Position(5, 0),
                 ),
                 children: [],
               },
@@ -202,11 +203,11 @@ export const getTestSetups = () => {
                 kind: 1,
                 range: new vscode.Range(
                   new vscode.Position(9, 0),
-                  new vscode.Position(9, 0)
+                  new vscode.Position(9, 0),
                 ),
                 selectionRange: new vscode.Range(
                   new vscode.Position(9, 0),
-                  new vscode.Position(9, 0)
+                  new vscode.Position(9, 0),
                 ),
                 children: [],
               },

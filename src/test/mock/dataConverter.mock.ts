@@ -1,6 +1,7 @@
-import * as vscode from "vscode";
 import { QuickPickItem } from "../../types";
 import { getWorkspaceData } from "../util/mockFactory";
+
+import * as vscode from "vscode";
 
 export const itemUntitledUri = vscode.Uri.file("./fake/fake-1.ts");
 (itemUntitledUri as any).scheme = "untitled";
@@ -37,11 +38,11 @@ export const mocks = {
               kind: 1,
               range: new vscode.Range(
                 new vscode.Position(0, 0),
-                new vscode.Position(3, 0)
+                new vscode.Position(3, 0),
               ),
               selectionRange: new vscode.Range(
                 new vscode.Position(0, 0),
-                new vscode.Position(3, 0)
+                new vscode.Position(3, 0),
               ),
               children: [],
             },
@@ -51,11 +52,11 @@ export const mocks = {
               kind: 1,
               range: new vscode.Range(
                 new vscode.Position(4, 0),
-                new vscode.Position(5, 0)
+                new vscode.Position(5, 0),
               ),
               selectionRange: new vscode.Range(
                 new vscode.Position(4, 0),
-                new vscode.Position(5, 0)
+                new vscode.Position(5, 0),
               ),
               children: [],
             },
@@ -65,11 +66,11 @@ export const mocks = {
               kind: 1,
               range: new vscode.Range(
                 new vscode.Position(9, 0),
-                new vscode.Position(9, 0)
+                new vscode.Position(9, 0),
               ),
               selectionRange: new vscode.Range(
                 new vscode.Position(9, 0),
-                new vscode.Position(9, 0)
+                new vscode.Position(9, 0),
               ),
               children: [],
             },
@@ -168,11 +169,11 @@ export const mocks = {
               kind: 1,
               range: new vscode.Range(
                 new vscode.Position(0, 0),
-                new vscode.Position(3, 0)
+                new vscode.Position(3, 0),
               ),
               selectionRange: new vscode.Range(
                 new vscode.Position(0, 0),
-                new vscode.Position(3, 0)
+                new vscode.Position(3, 0),
               ),
               children: [],
             },
@@ -182,11 +183,11 @@ export const mocks = {
               kind: 1,
               range: new vscode.Range(
                 new vscode.Position(4, 0),
-                new vscode.Position(5, 0)
+                new vscode.Position(5, 0),
               ),
               selectionRange: new vscode.Range(
                 new vscode.Position(4, 0),
-                new vscode.Position(5, 0)
+                new vscode.Position(5, 0),
               ),
               children: [],
             },

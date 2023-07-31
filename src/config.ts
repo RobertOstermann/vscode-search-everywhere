@@ -1,6 +1,7 @@
-import * as vscode from "vscode";
 import { getConfigByKey, updateConfigByKey } from "./cache";
 import { ExcludeMode, Icons, ItemsFilter, ItemsFilterPhrases } from "./types";
+
+import * as vscode from "vscode";
 
 const defaultSection = "searchEverywhere";
 const keys = {
@@ -73,11 +74,11 @@ const keys = {
 function getConfigurationByKey<T>(
   key: string,
   defaultValue: T,
-  customSection?: string
+  customSection?: string,
 ): T {
   return getConfiguration<T>(
     `${customSection ? customSection : defaultSection}.${key}`,
-    defaultValue
+    defaultValue,
   );
 }
 
@@ -107,7 +108,7 @@ function getConfiguration<T>(section: string, defaultValue: T): T {
 export function fetchShouldDisplayNotificationInStatusBar(): boolean {
   return get(
     keys.shouldDisplayNotificationInStatusBar.name,
-    keys.shouldDisplayNotificationInStatusBar.value
+    keys.shouldDisplayNotificationInStatusBar.value,
   );
 }
 
@@ -134,7 +135,7 @@ export function fetchItemsFilter(): ItemsFilter {
 export function fetchShouldUseItemsFilterPhrases(): boolean {
   return get(
     keys.shouldUseItemsFilterPhrases.name,
-    keys.shouldUseItemsFilterPhrases.value
+    keys.shouldUseItemsFilterPhrases.value,
   );
 }
 
@@ -163,16 +164,16 @@ export function fetchInclude(): string {
 }
 
 export function fetchFilesAndSearchExclude(): string[] {
-  let excludePatterns: Array<string> = [];
+  const excludePatterns: Array<string> = [];
   const filesExcludePatterns = getFilesExclude();
   const searchExcludePatterns = getSearchExclude();
 
   const allExcludePatterns = Object.assign(
     {},
     filesExcludePatterns,
-    searchExcludePatterns
+    searchExcludePatterns,
   );
-  for (let [key, value] of Object.entries(allExcludePatterns)) {
+  for (const [key, value] of Object.entries(allExcludePatterns)) {
     value && excludePatterns.push(key);
   }
 
@@ -186,6 +187,6 @@ export function fetchExcludeMode(): ExcludeMode {
 export function fetchShouldWorkspaceDataBeCached(): boolean {
   return get(
     keys.shouldWorkspaceDataBeCached.name,
-    keys.shouldWorkspaceDataBeCached.value
+    keys.shouldWorkspaceDataBeCached.value,
   );
 }

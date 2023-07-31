@@ -1,6 +1,7 @@
-import * as vscode from "vscode";
 import { Action, IndexStats, WorkspaceData } from "./types";
 import { utils } from "./utils";
+
+import * as vscode from "vscode";
 
 function init() {
   const channel = vscode.window.createOutputChannel("Search everywhere");

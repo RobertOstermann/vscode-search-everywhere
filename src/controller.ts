@@ -1,4 +1,3 @@
-import * as vscode from "vscode";
 import { clear, clearConfig, clearNotSavedUriPaths, initCache } from "./cache";
 import {
   fetchShouldInitOnStartup,
@@ -19,6 +18,8 @@ import {
   onWillReindexOnConfigurationChange,
 } from "./workspaceEventsEmitter";
 
+import * as vscode from "vscode";
+
 function loadItemsAndShowQuickPick() {
   quickPick.loadItems();
   quickPick.show();
@@ -30,7 +31,7 @@ function loadItemsAndShowQuickPick() {
 
     const { start, end } = activeEditor.selection;
     quickPick.setText(
-      activeEditor.document.getText(new vscode.Range(start, end))
+      activeEditor.document.getText(new vscode.Range(start, end)),
     );
   }
 }
@@ -185,12 +186,12 @@ async function search(): Promise<void> {
 
     const { start, end } = activeEditor.selection;
     quickPick.setText(
-      activeEditor.document.getText(new vscode.Range(start, end))
+      activeEditor.document.getText(new vscode.Range(start, end)),
     );
 
     await utils.sleepAndExecute(
       timeInMsToAvoidListFlashing,
-      quickPick.reloadOnDidChangeValueEventListener
+      quickPick.reloadOnDidChangeValueEventListener,
     );
 
     // setTimeout(() => {
@@ -248,7 +249,7 @@ async function init(newExtensionContext: vscode.ExtensionContext) {
   await workspace.init();
   registerWorkspaceEventListeners();
 
-  logger.log(`Extension "vscode-search-everywhere" has been activated.`);
+  logger.log("Extension \"vscode-search-everywhere\" has been activated.");
 }
 
 export const controller = {

@@ -1,5 +1,3 @@
-import { performance } from "perf_hooks";
-import * as vscode from "vscode";
 import { actionProcessor } from "./actionProcessor";
 import { getData as getDataFromCache, updateData } from "./cache";
 import { fetchShouldDisplayNotificationInStatusBar } from "./config";
@@ -9,6 +7,9 @@ import { onDidItemIndexed } from "./dataServiceEventsEmitter";
 import { logger } from "./logger";
 import { Action, ActionType, QuickPickItem, WorkspaceData } from "./types";
 import { utils } from "./utils";
+
+import { performance } from "perf_hooks";
+import * as vscode from "vscode";
 
 function getData(): QuickPickItem[] {
   return getDataFromCache() || [];
@@ -26,7 +27,7 @@ async function indexWithProgress(): Promise<void> {
           title: workspaceCommon.getNotificationTitle(),
           cancellable: true,
         },
-        indexWithProgressTask
+        indexWithProgressTask,
       )
     : utils.printNoFolderOpenedMessage();
 }
@@ -35,7 +36,7 @@ async function registerAction(
   type: ActionType,
   fn: Function,
   trigger: string,
-  uri?: vscode.Uri
+  uri?: vscode.Uri,
 ): Promise<void> {
   const action: Action = {
     type,
@@ -61,14 +62,14 @@ async function indexWithProgressTask(
     message?: string | undefined;
     increment?: number | undefined;
   }>,
-  token: vscode.CancellationToken
+  token: vscode.CancellationToken,
 ): Promise<void> {
   const handleCancellationRequestedSubscription = token.onCancellationRequested(
-    handleCancellationRequested
+    handleCancellationRequested,
   );
 
   const handleDidItemIndexedSubscription = onDidItemIndexed(
-    handleDidItemIndexed.bind(null, progress)
+    handleDidItemIndexed.bind(null, progress),
   );
 
   const startMeasure = startTimeMeasurement();
@@ -129,7 +130,7 @@ function handleDidItemIndexed(
     message?: string | undefined;
     increment?: number | undefined;
   }>,
-  urisCount: number
+  urisCount: number,
 ) {
   !isProgressStepCalculated() && calculateProgressStep(urisCount);
   increaseCurrentProgressValue();
@@ -154,7 +155,7 @@ function reportCurrentProgress(
   progress: vscode.Progress<{
     message?: string | undefined;
     increment?: number | undefined;
-  }>
+  }>,
 ): void {
   progress.report({
     increment: workspaceCommon.getProgressStep(),

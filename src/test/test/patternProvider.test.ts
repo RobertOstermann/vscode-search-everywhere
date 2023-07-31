@@ -1,6 +1,7 @@
-import { assert } from "chai";
 import { patternProvider } from "../../patternProvider";
 import { getTestSetups } from "../testSetup/patternProvider.testSetup";
+
+import { assert } from "chai";
 
 type SetupsType = ReturnType<typeof getTestSetups>;
 
@@ -56,7 +57,7 @@ describe("PatternProvider", () => {
       assert.equal(await patternProvider.getExcludePatterns(), excludePatterns);
     });
 
-    it(`6: should return empty string if there is not any pattern'`, async () => {
+    it("6: should return empty string if there is not any pattern'", async () => {
       const excludePatterns = setups.getExcludePatterns6();
 
       assert.equal(await patternProvider.getExcludePatterns(), excludePatterns);
@@ -81,7 +82,7 @@ describe("PatternProvider", () => {
       await patternProvider.fetchConfig();
       assert.equal(
         patternProvider.getExtensionExcludePatterns(),
-        extensionExcludePatterns
+        extensionExcludePatterns,
       );
     });
 
@@ -90,7 +91,7 @@ describe("PatternProvider", () => {
       await patternProvider.fetchConfig();
       assert.equal(
         patternProvider.getFilesAndSearchExcludePatterns(),
-        filesAndSearchExcludePatterns
+        filesAndSearchExcludePatterns,
       );
     });
 
@@ -99,7 +100,7 @@ describe("PatternProvider", () => {
       await patternProvider.fetchConfig();
       assert.deepEqual(
         patternProvider.getGitignoreExcludePatterns(),
-        gitignoreExcludePatterns
+        gitignoreExcludePatterns,
       );
     });
 
@@ -108,7 +109,7 @@ describe("PatternProvider", () => {
       await patternProvider.fetchConfig();
       assert.deepEqual(
         patternProvider.getGitignoreExcludePatterns(),
-        gitignoreExcludePatterns
+        gitignoreExcludePatterns,
       );
     });
 
@@ -117,7 +118,7 @@ describe("PatternProvider", () => {
       await patternProvider.fetchConfig();
       assert.deepEqual(
         patternProvider.getGitignoreExcludePatterns(),
-        gitignoreExcludePatterns
+        gitignoreExcludePatterns,
       );
     });
   });

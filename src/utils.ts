@@ -1,11 +1,12 @@
-import * as vscode from "vscode";
 import { IndexStats, Item, QuickPickItem, WorkspaceData } from "./types";
+
+import * as vscode from "vscode";
 
 function getWorkspaceFoldersPaths(): string[] {
   return (
     (vscode.workspace.workspaceFolders &&
       vscode.workspace.workspaceFolders.map(
-        (wf: vscode.WorkspaceFolder) => wf.uri.path
+        (wf: vscode.WorkspaceFolder) => wf.uri.path,
       )) ||
     []
   );
@@ -39,33 +40,33 @@ function hasWorkspaceMoreThanOneFolder(): boolean {
 }
 
 function hasWorkspaceChanged(
-  event: vscode.WorkspaceFoldersChangeEvent
+  event: vscode.WorkspaceFoldersChangeEvent,
 ): boolean {
   return !!event.added.length || !!event.removed.length;
 }
 
 function isDebounceConfigurationToggled(
-  event: vscode.ConfigurationChangeEvent
+  event: vscode.ConfigurationChangeEvent,
 ): boolean {
   return event.affectsConfiguration("searchEverywhere.shouldUseDebounce");
 }
 
 function isSortingConfigurationToggled(
-  event: vscode.ConfigurationChangeEvent
+  event: vscode.ConfigurationChangeEvent,
 ): boolean {
   return event.affectsConfiguration("searchEverywhere.shouldItemsBeSorted");
 }
 
 function printNoFolderOpenedMessage(): void {
   vscode.window.showInformationMessage(
-    "Workspace doesn't contain any folder opened"
+    "Workspace doesn't contain any folder opened",
   );
 }
 
 function printErrorMessage(error: Error): void {
   vscode.window.showInformationMessage(
     `Something went wrong...
-    Extension encountered the following error: ${error.stack}`
+    Extension encountered the following error: ${error.stack}`,
   );
 }
 
@@ -73,7 +74,7 @@ function printStatsMessage(indexStats: IndexStats): void {
   vscode.window.showInformationMessage(
     `Elapsed time: ${indexStats.ElapsedTimeInSeconds}s
      Scanned files: ${indexStats.ScannedUrisCount}
-     Indexed items: ${indexStats.IndexedItemsCount}`
+     Indexed items: ${indexStats.IndexedItemsCount}`,
   );
 }
 
@@ -96,12 +97,12 @@ function getSplitter(): string {
 function getUrisForDirectoryPathUpdate(
   data: QuickPickItem[],
   uri: vscode.Uri,
-  fileKind: number
+  fileKind: number,
 ): vscode.Uri[] {
   return data
     .filter(
       (qpItem: QuickPickItem) =>
-        qpItem.uri.path.includes(uri.path) && qpItem.symbolKind === fileKind
+        qpItem.uri.path.includes(uri.path) && qpItem.symbolKind === fileKind,
     )
     .map((qpItem: QuickPickItem) => qpItem.uri);
 }
@@ -123,7 +124,7 @@ function countWordInstances(text: string, word: string): number {
 function getNthIndex(
   text: string,
   word: string,
-  occurrenceNumber: number
+  occurrenceNumber: number,
 ): number {
   let index = -1;
   while (occurrenceNumber-- && index++ < text.length) {
@@ -141,7 +142,7 @@ function getLastFromArray<T>(array: T[], predicate: (item: T) => boolean): T {
 
 function groupBy<T>(
   array: T[],
-  keyGetter: (...args: any[]) => string
+  keyGetter: (...args: any[]) => string,
 ): Map<string, T[]> {
   const map = new Map<string, T[]>();
   array.forEach((item: T) => {
@@ -159,24 +160,24 @@ function getNameFromUri(uri: vscode.Uri): string {
 function updateQpItemsWithNewDirectoryPath(
   data: QuickPickItem[],
   oldDirectoryUri: vscode.Uri,
-  newDirectoryUri: vscode.Uri
+  newDirectoryUri: vscode.Uri,
 ): QuickPickItem[] {
   const normalizedOldDirectoryUriPath = utils.normalizeUriPath(
-    oldDirectoryUri.path
+    oldDirectoryUri.path,
   );
-  let normalizedNewDirectoryUriPath = utils.normalizeUriPath(
-    newDirectoryUri.path
+  const normalizedNewDirectoryUriPath = utils.normalizeUriPath(
+    newDirectoryUri.path,
   );
 
   return data.map((qpItem: QuickPickItem) => {
     if (qpItem.uri.path.includes(oldDirectoryUri.path)) {
       qpItem.detail = qpItem.detail!.replace(
         normalizedOldDirectoryUriPath,
-        normalizedNewDirectoryUriPath
+        normalizedNewDirectoryUriPath,
       );
       const newUriPath = qpItem.uri.path.replace(
         normalizedOldDirectoryUriPath,
-        normalizedNewDirectoryUriPath
+        normalizedNewDirectoryUriPath,
       );
       qpItem.uri = vscode.Uri.file(newUriPath);
       (qpItem.uri as any)._fsPath = qpItem.uri.path;
@@ -192,7 +193,7 @@ function normalizeUriPath(path: string): string {
   if (utils.hasWorkspaceMoreThanOneFolder()) {
     normalizedPath = normalizedPath.replace(
       utils.getWorkspaceFoldersCommonPathProp(),
-      ""
+      "",
     );
   } else {
     workspaceFoldersPaths.forEach((wfPath: string) => {
@@ -251,14 +252,14 @@ function setWorkspaceFoldersCommonPath() {
   if (utils.hasWorkspaceMoreThanOneFolder()) {
     const workspaceFoldersPaths = getWorkspaceFoldersPaths();
     const workspaceFoldersCommonPathTemp = getCommonSubstringFromStart(
-      workspaceFoldersPaths
+      workspaceFoldersPaths,
     );
     const workspaceFoldersCommonPathArray =
       workspaceFoldersCommonPathTemp.split("/");
     workspaceFoldersCommonPathArray.pop();
 
     setWorkspaceFoldersCommonPathProp(
-      workspaceFoldersCommonPathArray.join("/")
+      workspaceFoldersCommonPathArray.join("/"),
     );
   }
 }
@@ -266,7 +267,7 @@ function setWorkspaceFoldersCommonPath() {
 let workspaceFoldersCommonPath = "";
 
 function setWorkspaceFoldersCommonPathProp(
-  newWorkspaceFoldersCommonPath: string
+  newWorkspaceFoldersCommonPath: string,
 ) {
   workspaceFoldersCommonPath = newWorkspaceFoldersCommonPath;
 }

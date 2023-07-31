@@ -25,12 +25,12 @@ interface RestoreStubbedMultipleConfig {
 
 export const stubMultiple = (
   configList: StubMultipleConfig[],
-  overridenSandox?: sinon.SinonSandbox
+  overridenSandox?: sinon.SinonSandbox,
 ): sinon.SinonStub<any[], any>[] => {
   const sandbox = overridenSandox || sinon;
   const stubs: sinon.SinonStub<any[], any>[] = [];
   configList.forEach((config: StubMultipleConfig) => {
-    let stub = sandbox.stub(config.object, config.method);
+    const stub = sandbox.stub(config.object, config.method);
 
     if (config.callsFake) {
       !config.isNotMethod && stub.returns(config.returns);
@@ -56,7 +56,7 @@ export const stubMultiple = (
 };
 
 export const restoreStubbedMultiple = (
-  configList: RestoreStubbedMultipleConfig[]
+  configList: RestoreStubbedMultipleConfig[],
 ) => {
   configList.forEach((config: RestoreStubbedMultipleConfig) => {
     config.object[config.method].restore();
@@ -65,7 +65,7 @@ export const restoreStubbedMultiple = (
 function stubOnSpecificCall(
   config: StubMultipleConfig,
   stub: sinon.SinonStub<any[], any>,
-  customReturn: StubCustomReturn
+  customReturn: StubCustomReturn,
 ) {
   let onCallStub: sinon.SinonStub<any[], any>;
   if (customReturn.onCall !== undefined) {

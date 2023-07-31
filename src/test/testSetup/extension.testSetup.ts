@@ -1,8 +1,9 @@
-import * as sinon from "sinon";
-import * as vscode from "vscode";
 import { controller } from "../../controller";
 import { getExtensionContext } from "../util/mockFactory";
 import { stubMultiple } from "../util/stubHelpers";
+
+import * as sinon from "sinon";
+import * as vscode from "vscode";
 
 export const getTestSetups = () => {
   const sandbox = sinon.createSandbox();
@@ -31,7 +32,7 @@ export const getTestSetups = () => {
             method: "startup",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     activate2: () => {
@@ -50,7 +51,7 @@ export const getTestSetups = () => {
             method: "startup",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     activate3: () => {
@@ -69,7 +70,7 @@ export const getTestSetups = () => {
             method: "registerCommand",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     deactivate1: () => {

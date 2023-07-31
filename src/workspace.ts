@@ -1,4 +1,3 @@
-import * as vscode from "vscode";
 import {
   onDidProcessing,
   onWillExecuteAction,
@@ -35,7 +34,9 @@ import {
 import { removeFromCacheByPath } from "./workspaceRemover";
 import { updateCacheByPath } from "./workspaceUpdater";
 
-const debounce = require("debounce");
+import * as vscode from "vscode";
+
+import debounce = require("debounce");
 
 function reloadComponents() {
   dataConverter.reload();
@@ -43,7 +44,7 @@ function reloadComponents() {
 }
 
 async function handleDidChangeConfiguration(
-  event: vscode.ConfigurationChangeEvent
+  event: vscode.ConfigurationChangeEvent,
 ) {
   clearConfig();
   if (workspace.shouldReindexOnConfigurationChange(event)) {
@@ -58,18 +59,18 @@ async function handleDidChangeConfiguration(
 }
 
 async function handleDidChangeWorkspaceFolders(
-  event: vscode.WorkspaceFoldersChangeEvent
+  event: vscode.WorkspaceFoldersChangeEvent,
 ) {
   utils.hasWorkspaceChanged(event) &&
     (await workspace.index(ActionTrigger.WorkspaceFoldersChange));
 }
 
 async function handleDidChangeTextDocument(
-  event: vscode.TextDocumentChangeEvent
+  event: vscode.TextDocumentChangeEvent,
 ) {
   const uri = event.document.uri;
   const isUriExistingInWorkspace = await dataService.isUriExistingInWorkspace(
-    uri
+    uri,
   );
   const hasContentChanged = event.contentChanges.length;
 
@@ -82,14 +83,14 @@ async function handleDidChangeTextDocument(
       ActionType.Remove,
       removeFromCacheByPath.bind(null, uri, actionType),
       ActionTrigger.DidChangeTextDocument,
-      uri
+      uri,
     );
 
     await common.registerAction(
       ActionType.Update,
       updateCacheByPath.bind(null, uri, actionType),
       ActionTrigger.DidChangeTextDocument,
-      uri
+      uri,
     );
   }
 }
@@ -107,7 +108,7 @@ async function handleDidRenameFiles(event: vscode.FileRenameEvent) {
       ActionType.Update,
       updateCacheByPath.bind(null, file.newUri, actionType, file.oldUri),
       ActionTrigger.DidRenameFiles,
-      file.newUri
+      file.newUri,
     );
 
     actionType === DetailedActionType.RenameOrMoveFile &&
@@ -115,7 +116,7 @@ async function handleDidRenameFiles(event: vscode.FileRenameEvent) {
         ActionType.Remove,
         removeFromCacheByPath.bind(null, file.oldUri, actionType),
         ActionTrigger.DidRenameFiles,
-        file.oldUri
+        file.oldUri,
       ));
   }
 }
@@ -132,7 +133,7 @@ async function handleDidCreateFiles(event: vscode.FileCreateEvent) {
     ActionType.Update,
     updateCacheByPath.bind(null, uri, actionType),
     ActionTrigger.DidCreateFiles,
-    uri
+    uri,
   );
 }
 
@@ -146,7 +147,7 @@ async function handleDidDeleteFiles(event: vscode.FileDeleteEvent) {
     ActionType.Remove,
     removeFromCacheByPath.bind(null, uri, actionType),
     ActionTrigger.DidDeleteFiles,
-    uri
+    uri,
   );
 }
 
@@ -167,7 +168,7 @@ function handleWillActionProcessorExecuteAction(action: Action) {
 }
 
 function shouldReindexOnConfigurationChange(
-  event: vscode.ConfigurationChangeEvent
+  event: vscode.ConfigurationChangeEvent,
 ): boolean {
   const excludeMode = fetchExcludeMode();
   const excluded: string[] = [
@@ -212,17 +213,17 @@ async function removeDataForUnsavedUris() {
       removeFromCacheByPath.bind(
         null,
         uri,
-        DetailedActionType.ReloadUnsavedUri
+        DetailedActionType.ReloadUnsavedUri,
       ),
       ActionTrigger.ReloadUnsavedUri,
-      uri
+      uri,
     );
 
     await common.registerAction(
       ActionType.Update,
       updateCacheByPath.bind(null, uri, DetailedActionType.ReloadUnsavedUri),
       ActionTrigger.ReloadUnsavedUri,
-      uri
+      uri,
     );
   }
 
@@ -231,13 +232,13 @@ async function removeDataForUnsavedUris() {
 
 function registerEventListeners(): void {
   vscode.workspace.onDidChangeConfiguration(
-    debounce(handleDidChangeConfiguration, 250)
+    debounce(handleDidChangeConfiguration, 250),
   );
   vscode.workspace.onDidChangeWorkspaceFolders(
-    debounce(handleDidChangeWorkspaceFolders, 250)
+    debounce(handleDidChangeWorkspaceFolders, 250),
   );
   vscode.workspace.onDidChangeTextDocument(
-    debounce(handleDidChangeTextDocument, 700)
+    debounce(handleDidChangeTextDocument, 700),
   );
   vscode.workspace.onDidRenameFiles(handleDidRenameFiles);
   vscode.workspace.onDidCreateFiles(handleDidCreateFiles);

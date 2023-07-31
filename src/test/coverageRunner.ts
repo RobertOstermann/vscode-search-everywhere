@@ -4,11 +4,11 @@
   https://github.com/rpeshkov/vscode-testcov
 */
 
-declare var global: any;
-
 import * as fs from "fs";
 import * as glob from "glob";
 import * as path from "path";
+
+declare let global: any;
 
 const istanbul = require("istanbul");
 const remapIstanbul = require("remap-istanbul");
@@ -45,17 +45,17 @@ class CoverageRunner {
     // Set up Code Coverage, hooking require so that instrumented code is returned
     const self = this;
     self.instrumenter = new istanbul.Instrumenter({
-      coverageVariable: self.coverageVar
+      coverageVariable: self.coverageVar,
     });
     const sourceRoot = path.join(
       self.testsRoot,
-      self.options.relativeSourcePath
+      self.options.relativeSourcePath,
     );
 
     // Glob source files
     const srcFiles = glob.sync("**/**.js", {
       cwd: sourceRoot,
-      ignore: self.options.ignorePatterns
+      ignore: self.options.ignorePatterns,
     });
 
     // Create a match function - taken from the run-with-cover.js in istanbul.
@@ -112,7 +112,7 @@ class CoverageRunner {
       Object.keys(global[self.coverageVar]).length === 0
     ) {
       console.error(
-        "No coverage information was collected, exit without writing coverage information"
+        "No coverage information was collected, exit without writing coverage information",
       );
       return;
     } else {
@@ -140,13 +140,13 @@ class CoverageRunner {
     // TODO Allow config of reporting directory with
     const reportingDir = path.join(
       self.testsRoot,
-      self.options.relativeCoverageDir
+      self.options.relativeCoverageDir,
     );
     const includePid = self.options.includePid;
     const pidExt = includePid ? "-" + process.pid : "";
     const coverageFile = path.resolve(
       reportingDir,
-      "coverage" + pidExt + ".json"
+      "coverage" + pidExt + ".json",
     );
 
     // yes, do this again since some test runners could clean the dir initially created
@@ -161,7 +161,7 @@ class CoverageRunner {
         if (self.options.verbose) {
           console.warn(warning);
         }
-      }
+      },
     });
 
     const reporter = new istanbul.Reporter(undefined, reportingDir);

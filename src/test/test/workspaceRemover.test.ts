@@ -1,9 +1,10 @@
-import { assert } from "chai";
 import { DetailedActionType } from "../../types";
 import * as workspaceRemover from "../../workspaceRemover";
 import { getTestSetups } from "../testSetup/workspaceRemover.testSetup";
 import { getDirectory, getItem } from "../util/itemMockFactory";
 import { getQpItems } from "../util/qpItemMockFactory";
+
+import { assert } from "chai";
 
 type SetupsType = ReturnType<typeof getTestSetups>;
 
@@ -21,11 +22,11 @@ describe("WorkspaceRemover", () => {
 
       workspaceRemover.removeFromCacheByPath(
         getItem(),
-        DetailedActionType.RemoveFile
+        DetailedActionType.RemoveFile,
       );
       assert.equal(
         updateDataStub.calledWith(getQpItems(1, undefined, 1)),
-        true
+        true,
       );
     });
 
@@ -34,11 +35,11 @@ describe("WorkspaceRemover", () => {
 
       workspaceRemover.removeFromCacheByPath(
         getItem(),
-        DetailedActionType.RenameOrMoveFile
+        DetailedActionType.RenameOrMoveFile,
       );
       assert.equal(
         updateDataStub.calledWith(getQpItems(1, undefined, 1)),
-        true
+        true,
       );
     });
 
@@ -47,11 +48,11 @@ describe("WorkspaceRemover", () => {
 
       workspaceRemover.removeFromCacheByPath(
         getItem(),
-        DetailedActionType.TextChange
+        DetailedActionType.TextChange,
       );
       assert.equal(
         updateDataStub.calledWith(getQpItems(1, undefined, 1)),
-        true
+        true,
       );
     });
 
@@ -60,7 +61,7 @@ describe("WorkspaceRemover", () => {
 
       workspaceRemover.removeFromCacheByPath(
         getDirectory("./fake/"),
-        DetailedActionType.RemoveDirectory
+        DetailedActionType.RemoveDirectory,
       );
       assert.equal(updateDataStub.calledWith([]), true);
     });
@@ -70,7 +71,7 @@ describe("WorkspaceRemover", () => {
 
       workspaceRemover.removeFromCacheByPath(
         getDirectory("./fake/"),
-        DetailedActionType.RenameOrMoveDirectory
+        DetailedActionType.RenameOrMoveDirectory,
       );
       assert.equal(updateDataStub.calledWith([]), true);
     });
@@ -80,11 +81,11 @@ describe("WorkspaceRemover", () => {
 
       workspaceRemover.removeFromCacheByPath(
         getItem(),
-        DetailedActionType.ReloadUnsavedUri
+        DetailedActionType.ReloadUnsavedUri,
       );
       assert.equal(
         updateDataStub.calledWith(getQpItems(1, undefined, 1)),
-        true
+        true,
       );
     });
   });

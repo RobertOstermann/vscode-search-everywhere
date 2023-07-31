@@ -1,5 +1,3 @@
-import * as sinon from "sinon";
-import * as vscode from "vscode";
 import * as cache from "../../cache";
 import * as config from "../../config";
 import { controller } from "../../controller";
@@ -12,6 +10,9 @@ import { getExtensionContext } from "../util/mockFactory";
 import { getQpItem, getQpItems } from "../util/qpItemMockFactory";
 import { getTextEditorStub } from "../util/stubFactory";
 import { stubMultiple } from "../util/stubHelpers";
+
+import * as sinon from "sinon";
+import * as vscode from "vscode";
 
 function stubComponents(sandbox: sinon.SinonSandbox) {
   return stubMultiple(
@@ -49,13 +50,13 @@ function stubComponents(sandbox: sinon.SinonSandbox) {
         method: "onWillReindexOnConfigurationChange",
       },
     ],
-    sandbox
+    sandbox,
   );
 }
 
 function stubComponentsForStartup(
   sandbox: sinon.SinonSandbox,
-  returnsValues: { [key: string]: any }
+  returnsValues: { [key: string]: any },
 ) {
   return stubMultiple(
     [
@@ -105,13 +106,13 @@ function stubComponentsForStartup(
         returns: returnsValues.shouldLoadDataFromCacheOnStartup,
       },
     ],
-    sandbox
+    sandbox,
   );
 }
 
 function stubComponentsForSearch(
   sandbox: sinon.SinonSandbox,
-  returnsValues: { [key: string]: any }
+  returnsValues: { [key: string]: any },
 ) {
   return stubMultiple(
     [
@@ -171,13 +172,13 @@ function stubComponentsForSearch(
         returns: returnsValues.shouldSearchSelection,
       },
     ],
-    sandbox
+    sandbox,
   );
 }
 
 function stubComponentsForIsInitOnStartupEnabledAndWorkspaceCachingEnabledButDataIsEmpty(
   sandbox: sinon.SinonSandbox,
-  returnsValues: { [key: string]: any }
+  returnsValues: { [key: string]: any },
 ) {
   return stubMultiple(
     [
@@ -202,33 +203,33 @@ function stubComponentsForIsInitOnStartupEnabledAndWorkspaceCachingEnabledButDat
         returns: returnsValues.getData,
       },
     ],
-    sandbox
+    sandbox,
   );
 }
 
 function stubComponentsForShouldLoadDataFromCacheOnQuickPickOpen(
   sandbox: sinon.SinonSandbox,
-  returnsValues: { [key: string]: any }
+  returnsValues: { [key: string]: any },
 ) {
   return stubComponentsForIsInitOnStartupEnabledAndWorkspaceCachingEnabledButDataIsEmpty(
     sandbox,
-    returnsValues
+    returnsValues,
   );
 }
 
 function stubComponentsForShouldLoadDataFromCacheOnStartup(
   sandbox: sinon.SinonSandbox,
-  returnsValues: { [key: string]: any }
+  returnsValues: { [key: string]: any },
 ) {
   return stubComponentsForIsInitOnStartupEnabledAndWorkspaceCachingEnabledButDataIsEmpty(
     sandbox,
-    returnsValues
+    returnsValues,
   );
 }
 
 function stubComponentsForShouldSearchSelection(
   sandbox: sinon.SinonSandbox,
-  returnsValues: { [key: string]: any }
+  returnsValues: { [key: string]: any },
 ) {
   return stubMultiple(
     [
@@ -243,7 +244,7 @@ function stubComponentsForShouldSearchSelection(
         returns: returnsValues.fetchShouldSearchSelection,
       },
     ],
-    sandbox
+    sandbox,
   );
 }
 
@@ -290,7 +291,7 @@ export const getTestSetups = () => {
             method: "onWillReindexOnConfigurationChange",
           },
         ],
-        sandbox
+        sandbox,
       );
       return getExtensionContext();
     },
@@ -330,7 +331,7 @@ export const getTestSetups = () => {
             method: "onWillReindexOnConfigurationChange",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     init3: () => {
@@ -369,7 +370,7 @@ export const getTestSetups = () => {
             method: "onWillReindexOnConfigurationChange",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     init4: () => {
@@ -408,7 +409,7 @@ export const getTestSetups = () => {
             method: "registerEventListeners",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     search1: () => {
@@ -481,7 +482,7 @@ export const getTestSetups = () => {
             method: "setText",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     search8: () => {
@@ -507,7 +508,7 @@ export const getTestSetups = () => {
             returns: Promise.resolve(["**/.history/**", "**/.vscode/**"]),
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     search9: () => {
@@ -553,7 +554,7 @@ export const getTestSetups = () => {
             returns: editor,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     search11: () => {
@@ -580,7 +581,7 @@ export const getTestSetups = () => {
             method: "show",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     reload1: () => {
@@ -605,7 +606,7 @@ export const getTestSetups = () => {
             returns: false,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     reload2: () => {
@@ -630,7 +631,7 @@ export const getTestSetups = () => {
             returns: true,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     reload3: () => {
@@ -655,7 +656,7 @@ export const getTestSetups = () => {
             returns: true,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     startup1: () => {
@@ -721,7 +722,7 @@ export const getTestSetups = () => {
             returns: true,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     shouldIndexOnQuickPickOpen2: () => {
@@ -740,7 +741,7 @@ export const getTestSetups = () => {
             returns: false,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     shouldIndexOnQuickPickOpen3: () => {
@@ -759,7 +760,7 @@ export const getTestSetups = () => {
             returns: true,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     shouldIndexOnQuickPickOpen4: () => {
@@ -778,7 +779,7 @@ export const getTestSetups = () => {
             returns: false,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     shouldIndexOnStartup1: () => {
@@ -797,7 +798,7 @@ export const getTestSetups = () => {
             returns: true,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     shouldIndexOnStartup2: () => {
@@ -816,7 +817,7 @@ export const getTestSetups = () => {
             returns: false,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     shouldIndexOnStartup3: () => {
@@ -835,7 +836,7 @@ export const getTestSetups = () => {
             returns: true,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     shouldIndexOnStartup4: () => {
@@ -854,7 +855,7 @@ export const getTestSetups = () => {
             returns: false,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     isInitOnStartupDisabledAndWorkspaceCachingEnabledButDataIsEmpty1: () => {
@@ -866,7 +867,7 @@ export const getTestSetups = () => {
           fetchShouldInitOnStartup: false,
           fetchShouldWorkspaceDataBeCached: true,
           getData: [],
-        }
+        },
       );
     },
     isInitOnStartupDisabledAndWorkspaceCachingEnabledButDataIsEmpty2: () => {
@@ -878,7 +879,7 @@ export const getTestSetups = () => {
           fetchShouldInitOnStartup: true,
           fetchShouldWorkspaceDataBeCached: true,
           getData: [],
-        }
+        },
       );
     },
     isInitOnStartupDisabledAndWorkspaceCachingEnabledButDataIsEmpty3: () => {
@@ -890,7 +891,7 @@ export const getTestSetups = () => {
           fetchShouldInitOnStartup: false,
           fetchShouldWorkspaceDataBeCached: false,
           getData: [],
-        }
+        },
       );
     },
     isInitOnStartupDisabledAndWorkspaceCachingEnabledButDataIsEmpty4: () => {
@@ -902,7 +903,7 @@ export const getTestSetups = () => {
           fetchShouldInitOnStartup: false,
           fetchShouldWorkspaceDataBeCached: true,
           getData: [getQpItem()],
-        }
+        },
       );
     },
     isInitOnStartupDisabledAndWorkspaceCachingEnabledButDataIsEmpty5: () => {
@@ -914,7 +915,7 @@ export const getTestSetups = () => {
           fetchShouldInitOnStartup: false,
           fetchShouldWorkspaceDataBeCached: true,
           getData: [],
-        }
+        },
       );
     },
     isInitOnStartupDisabledAndWorkspaceCachingDisabled1: () => {
@@ -925,7 +926,7 @@ export const getTestSetups = () => {
           isInitialized: true,
           fetchShouldInitOnStartup: false,
           fetchShouldWorkspaceDataBeCached: false,
-        }
+        },
       );
     },
     isInitOnStartupDisabledAndWorkspaceCachingDisabled2: () => {
@@ -936,7 +937,7 @@ export const getTestSetups = () => {
           isInitialized: false,
           fetchShouldInitOnStartup: true,
           fetchShouldWorkspaceDataBeCached: false,
-        }
+        },
       );
     },
     isInitOnStartupDisabledAndWorkspaceCachingDisabled3: () => {
@@ -947,7 +948,7 @@ export const getTestSetups = () => {
           isInitialized: false,
           fetchShouldInitOnStartup: false,
           fetchShouldWorkspaceDataBeCached: true,
-        }
+        },
       );
     },
     isInitOnStartupDisabledAndWorkspaceCachingDisabled4: () => {
@@ -958,7 +959,7 @@ export const getTestSetups = () => {
           isInitialized: false,
           fetchShouldInitOnStartup: false,
           fetchShouldWorkspaceDataBeCached: false,
-        }
+        },
       );
     },
     isInitOnStartupEnabledAndWorkspaceCachingDisabled1: () => {
@@ -969,7 +970,7 @@ export const getTestSetups = () => {
           isInitialized: true,
           fetchShouldInitOnStartup: true,
           fetchShouldWorkspaceDataBeCached: false,
-        }
+        },
       );
     },
     isInitOnStartupEnabledAndWorkspaceCachingDisabled2: () => {
@@ -980,7 +981,7 @@ export const getTestSetups = () => {
           isInitialized: false,
           fetchShouldInitOnStartup: false,
           fetchShouldWorkspaceDataBeCached: false,
-        }
+        },
       );
     },
     isInitOnStartupEnabledAndWorkspaceCachingDisabled3: () => {
@@ -991,7 +992,7 @@ export const getTestSetups = () => {
           isInitialized: false,
           fetchShouldInitOnStartup: true,
           fetchShouldWorkspaceDataBeCached: true,
-        }
+        },
       );
     },
     isInitOnStartupEnabledAndWorkspaceCachingDisabled4: () => {
@@ -1002,7 +1003,7 @@ export const getTestSetups = () => {
           isInitialized: false,
           fetchShouldInitOnStartup: true,
           fetchShouldWorkspaceDataBeCached: false,
-        }
+        },
       );
     },
     isInitOnStartupEnabledAndWorkspaceCachingEnabledButDataIsEmpty1: () => {
@@ -1014,7 +1015,7 @@ export const getTestSetups = () => {
           fetchShouldInitOnStartup: true,
           fetchShouldWorkspaceDataBeCached: true,
           getData: [],
-        }
+        },
       );
     },
     isInitOnStartupEnabledAndWorkspaceCachingEnabledButDataIsEmpty2: () => {
@@ -1026,7 +1027,7 @@ export const getTestSetups = () => {
           fetchShouldInitOnStartup: false,
           fetchShouldWorkspaceDataBeCached: true,
           getData: [],
-        }
+        },
       );
     },
     isInitOnStartupEnabledAndWorkspaceCachingEnabledButDataIsEmpty3: () => {
@@ -1038,7 +1039,7 @@ export const getTestSetups = () => {
           fetchShouldInitOnStartup: true,
           fetchShouldWorkspaceDataBeCached: false,
           getData: [],
-        }
+        },
       );
     },
     isInitOnStartupEnabledAndWorkspaceCachingEnabledButDataIsEmpty4: () => {
@@ -1050,7 +1051,7 @@ export const getTestSetups = () => {
           fetchShouldInitOnStartup: true,
           fetchShouldWorkspaceDataBeCached: true,
           getData: [getQpItem()],
-        }
+        },
       );
     },
     isInitOnStartupEnabledAndWorkspaceCachingEnabledButDataIsEmpty5: () => {
@@ -1062,7 +1063,7 @@ export const getTestSetups = () => {
           fetchShouldInitOnStartup: true,
           fetchShouldWorkspaceDataBeCached: true,
           getData: [],
-        }
+        },
       );
     },
     shouldSearchSelection1: () => {
@@ -1182,7 +1183,7 @@ export const getTestSetups = () => {
             method: "fetchShouldQuickPickOpenFromSelection",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     shouldQuickPickOpenFromSelection2: () => {
@@ -1199,7 +1200,7 @@ export const getTestSetups = () => {
             returns: false,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     shouldQuickPickOpenFromSelection3: () => {
@@ -1216,7 +1217,7 @@ export const getTestSetups = () => {
             returns: true,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleWillProcessing1: () => {
@@ -1237,7 +1238,7 @@ export const getTestSetups = () => {
             returns: true,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleWillProcessing2: () => {
@@ -1266,7 +1267,7 @@ export const getTestSetups = () => {
             method: "init",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleWillProcessing3: () => {
@@ -1283,7 +1284,7 @@ export const getTestSetups = () => {
             returns: false,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleDidProcessing1: () => {
@@ -1312,7 +1313,7 @@ export const getTestSetups = () => {
             returns: true,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleDidProcessing2: () => {
@@ -1337,7 +1338,7 @@ export const getTestSetups = () => {
             method: "isInitialized",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleWillExecuteAction1: () => {
@@ -1353,7 +1354,7 @@ export const getTestSetups = () => {
             method: "loadItems",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleWillExecuteAction2: () => {
@@ -1369,7 +1370,7 @@ export const getTestSetups = () => {
             method: "loadItems",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleDidDebounceConfigToggle1: () => {
@@ -1385,7 +1386,7 @@ export const getTestSetups = () => {
             method: "reloadOnDidChangeValueEventListener",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleDidSortingConfigToggle1: () => {
@@ -1401,7 +1402,7 @@ export const getTestSetups = () => {
             method: "reloadSortingSettings",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     handleWillReindexOnConfigurationChange1: () => {
@@ -1413,7 +1414,7 @@ export const getTestSetups = () => {
             method: "reload",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
   };

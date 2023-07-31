@@ -1,6 +1,7 @@
-import * as vscode from "vscode";
 import { appConfig } from "./appConfig";
 import { QuickPickItem } from "./types";
+
+import * as vscode from "vscode";
 
 let extensionContext: vscode.ExtensionContext;
 
@@ -20,7 +21,7 @@ export function updateData(data: QuickPickItem[]): void {
 
 export function getNotSavedUriPaths(): string[] {
   const paths: string[] | undefined = extensionContext.workspaceState.get(
-    appConfig.notSaveUriPathsKey
+    appConfig.notSaveUriPathsKey,
   );
 
   return paths || [];
@@ -32,14 +33,14 @@ export function updateNotSavedUriPaths(paths: string[]): void {
 
 export function getConfigByKey<T>(key: string): T | undefined {
   const cache: any = extensionContext.workspaceState.get(
-    appConfig.configCacheKey
+    appConfig.configCacheKey,
   );
 
   return cache ? cache[key] : undefined;
 }
 
 export function updateConfigByKey<T>(key: string, value: T): void {
-  let cache: any =
+  const cache: any =
     extensionContext.workspaceState.get(appConfig.configCacheKey) || {};
   cache[key] = value;
 

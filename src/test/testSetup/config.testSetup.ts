@@ -1,8 +1,9 @@
-import * as sinon from "sinon";
-import * as vscode from "vscode";
 import * as cache from "../../cache";
 import { getConfiguration, getVscodeConfiguration } from "../util/mockFactory";
 import { stubMultiple } from "../util/stubHelpers";
+
+import * as sinon from "sinon";
+import * as vscode from "vscode";
 
 export const getTestSetups = () => {
   const configuration = getConfiguration();
@@ -29,7 +30,7 @@ export const getTestSetups = () => {
             method: "updateConfigByKey",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     afterEach: () => {
@@ -50,7 +51,7 @@ export const getTestSetups = () => {
             returns: configuration[section][key],
           },
         ],
-        sandbox
+        sandbox,
       );
     },
   };

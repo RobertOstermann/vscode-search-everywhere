@@ -1,4 +1,3 @@
-import { assert } from "chai";
 import { ActionTrigger, ActionType, ExcludeMode } from "../../types";
 import { workspace } from "../../workspace";
 import { getTestSetups } from "../testSetup/workspace.testSetup";
@@ -12,6 +11,8 @@ import {
 } from "../util/eventMockFactory";
 import { getAction } from "../util/mockFactory";
 import { getTextDocumentStub } from "../util/stubFactory";
+
+import { assert } from "chai";
 
 type SetupsType = ReturnType<typeof getTestSetups>;
 
@@ -118,9 +119,9 @@ describe("Workspace", () => {
 
       assert.equal(
         workspace.shouldReindexOnConfigurationChange(
-          getConfigurationChangeEvent(true, true, false)
+          getConfigurationChangeEvent(true, true, false),
         ),
-        true
+        true,
       );
     });
 
@@ -130,9 +131,9 @@ describe("Workspace", () => {
 
       assert.equal(
         workspace.shouldReindexOnConfigurationChange(
-          getConfigurationChangeEvent(false)
+          getConfigurationChangeEvent(false),
         ),
-        false
+        false,
       );
     });
 
@@ -141,9 +142,9 @@ describe("Workspace", () => {
 
       assert.equal(
         workspace.shouldReindexOnConfigurationChange(
-          getConfigurationChangeEvent(false)
+          getConfigurationChangeEvent(false),
         ),
-        false
+        false,
       );
     });
 
@@ -158,10 +159,10 @@ describe("Workspace", () => {
             false,
             true,
             ExcludeMode.FilesAndSearch,
-            true
-          )
+            true,
+          ),
         ),
-        true
+        true,
       );
     });
 
@@ -177,10 +178,10 @@ describe("Workspace", () => {
             true,
             ExcludeMode.FilesAndSearch,
             false,
-            true
-          )
+            true,
+          ),
         ),
-        true
+        true,
       );
     });
   });
@@ -191,7 +192,7 @@ describe("Workspace", () => {
       const [indexStub] = setups.handleDidChangeConfiguration1();
 
       await workspace.handleDidChangeConfiguration(
-        getConfigurationChangeEvent(true)
+        getConfigurationChangeEvent(true),
       );
 
       assert.equal(indexStub.calledOnce, true);
@@ -202,7 +203,7 @@ describe("Workspace", () => {
       const eventEmitter = setups.handleDidChangeConfiguration2();
 
       await workspace.handleDidChangeConfiguration(
-        getConfigurationChangeEvent(true)
+        getConfigurationChangeEvent(true),
       );
 
       assert.equal(eventEmitter.fire.calledOnce, true);
@@ -213,7 +214,7 @@ describe("Workspace", () => {
       const eventEmitter = setups.handleDidChangeConfiguration3();
 
       await workspace.handleDidChangeConfiguration(
-        getConfigurationChangeEvent(true)
+        getConfigurationChangeEvent(true),
       );
 
       assert.equal(eventEmitter.fire.calledOnce, true);
@@ -224,7 +225,7 @@ describe("Workspace", () => {
         setups.handleDidChangeConfiguration4();
 
       await workspace.handleDidChangeConfiguration(
-        getConfigurationChangeEvent(false)
+        getConfigurationChangeEvent(false),
       );
 
       assert.equal(registerActionStub.calledOnce, false);
@@ -235,7 +236,7 @@ describe("Workspace", () => {
       const [clearConfigStub] = setups.handleDidChangeConfiguration5();
 
       await workspace.handleDidChangeConfiguration(
-        getConfigurationChangeEvent(true)
+        getConfigurationChangeEvent(true),
       );
 
       assert.equal(clearConfigStub.calledOnce, true);
@@ -248,7 +249,7 @@ describe("Workspace", () => {
       const [indexStub] = setups.handleDidChangeWorkspaceFolders1();
 
       await workspace.handleDidChangeWorkspaceFolders(
-        getWorkspaceFoldersChangeEvent(true)
+        getWorkspaceFoldersChangeEvent(true),
       );
 
       assert.equal(indexStub.calledOnce, true);
@@ -257,7 +258,7 @@ describe("Workspace", () => {
     it("2: should do nothing if extension configuration has not changed", async () => {
       const [registerActionStub] = setups.handleDidChangeWorkspaceFolders2();
       await workspace.handleDidChangeWorkspaceFolders(
-        getWorkspaceFoldersChangeEvent(false)
+        getWorkspaceFoldersChangeEvent(false),
       );
 
       assert.equal(registerActionStub.calledOnce, false);
@@ -276,7 +277,7 @@ describe("Workspace", () => {
       assert.equal(registerActionStub.args[1][0], ActionType.Update);
     });
 
-    it(`2: should do nothing if text document does not exist in workspace`, async () => {
+    it("2: should do nothing if text document does not exist in workspace", async () => {
       const [registerActionStub] = setups.handleDidChangeTextDocument2();
       const textDocumentChangeEvent = getTextDocumentChangeEvent(true);
       await workspace.handleDidChangeTextDocument(textDocumentChangeEvent);
@@ -284,7 +285,7 @@ describe("Workspace", () => {
       assert.equal(registerActionStub.calledOnce, false);
     });
 
-    it(`3: should do nothing if text document has not changed`, async () => {
+    it("3: should do nothing if text document has not changed", async () => {
       const [registerActionStub] = setups.handleDidChangeTextDocument3();
       const textDocumentChangeEvent = await getTextDocumentChangeEvent();
       await workspace.handleDidChangeTextDocument(textDocumentChangeEvent);
@@ -292,7 +293,7 @@ describe("Workspace", () => {
       assert.equal(registerActionStub.calledOnce, false);
     });
 
-    it(`4: should add uri to not saved array if text document has changed and exists in workspace`, async () => {
+    it("4: should add uri to not saved array if text document has changed and exists in workspace", async () => {
       setups.handleDidChangeTextDocument4();
       const textDocumentChangeEvent = getTextDocumentChangeEvent(true);
       await workspace.handleDidChangeTextDocument(textDocumentChangeEvent);
@@ -345,7 +346,7 @@ describe("Workspace", () => {
       assert.equal(registerActionStub.args[0][0], ActionType.Update);
     });
 
-    it(`4: should add uri to not saved array`, async () => {
+    it("4: should add uri to not saved array", async () => {
       setups.handleDidCreateFiles3();
       await workspace.handleDidCreateFiles(getFileCreateEvent());
 
@@ -374,10 +375,10 @@ describe("Workspace", () => {
   });
 
   describe("handleDidSaveTextDocument", () => {
-    it(`should remove uri from not saved array`, async () => {
+    it("should remove uri from not saved array", async () => {
       setups.handleDidSaveTextDocument1();
       await workspace.handleDidSaveTextDocument(
-        getTextDocumentStub(undefined, "/test/path2")
+        getTextDocumentStub(undefined, "/test/path2"),
       );
 
       assert.equal(workspace.getNotSavedUris().size, 2);

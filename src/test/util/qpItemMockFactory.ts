@@ -1,7 +1,8 @@
-import * as vscode from "vscode";
 import { ItemsFilterPhrases, QuickPickItem } from "../../types";
 import { getUntitledItem } from "./itemMockFactory";
 import { getConfiguration } from "./mockFactory";
+
+import * as vscode from "vscode";
 
 export const getQpItem = (
   path: string = "/./fake/",
@@ -9,7 +10,7 @@ export const getQpItem = (
   differentStartAndEnd: boolean = false,
   withIcon: boolean = false,
   withFilterPhrase: boolean = false,
-  symbolKind: number = 0
+  symbolKind: number = 0,
 ): QuickPickItem => {
   const configuration = getConfiguration().searchEverywhere;
   const icons = configuration.icons;
@@ -64,7 +65,7 @@ export const getQpItems = (
   count: number = 2,
   path: string = "/./fake/",
   suffixStartOffset: number = 0,
-  withIcon: boolean = false
+  withIcon: boolean = false,
 ): QuickPickItem[] => {
   const array: QuickPickItem[] = [];
   for (let i = 1; i <= count; i++) {
@@ -74,7 +75,7 @@ export const getQpItems = (
 };
 
 export const getQpItemsSymbolAndUri = (
-  path: string = "/./fake/"
+  path: string = "/./fake/",
 ): QuickPickItem[] => {
   const qpItemsSymbolAndUri: QuickPickItem[] = [
     {
@@ -110,7 +111,7 @@ export const getQpItemsSymbolAndUri = (
 };
 
 export const getQpItemsSymbolAndUriExt = (
-  path: string = "/./fake/"
+  path: string = "/./fake/",
 ): QuickPickItem[] => {
   const qpItemsSymbolAndUriExt: QuickPickItem[] = [
     {
@@ -147,7 +148,7 @@ export const getQpItemsSymbolAndUriExt = (
 
 export const getQpItemDocumentSymbolSingleLine = (
   withIcon: boolean = false,
-  withFilterPhrase: boolean = false
+  withFilterPhrase: boolean = false,
 ): QuickPickItem => {
   const configuration = getConfiguration().searchEverywhere;
   const icons = configuration.icons;
@@ -174,7 +175,7 @@ export const getQpItemDocumentSymbolSingleLine = (
 };
 
 export const getDocumentSymbolQpItemMultiLine = (
-  withParent: boolean = false
+  withParent: boolean = false,
 ): QuickPickItem => {
   const qpItem = {
     label: "test name",
@@ -197,7 +198,7 @@ export const getDocumentSymbolQpItemMultiLine = (
 export const getQpHelpItem = (
   helpPhrase: string = "?",
   kind: string,
-  itemFilterPhrase: string
+  itemFilterPhrase: string,
 ): QuickPickItem => {
   const qpItem = {
     label: `${helpPhrase} Type ${itemFilterPhrase} for limit results to ${
@@ -213,11 +214,11 @@ export const getQpHelpItem = (
 
 export const getQpHelpItems = (
   helpPhrase: string = "?",
-  itemFilterPhrases: ItemsFilterPhrases = { 0: "$$", 4: "@@" }
+  itemFilterPhrases: ItemsFilterPhrases = { 0: "$$", 4: "@@" },
 ): QuickPickItem[] => {
   const array: QuickPickItem[] = [];
   Object.keys(itemFilterPhrases).forEach((kind: string) =>
-    array.push(getQpHelpItem(helpPhrase, kind, itemFilterPhrases[Number(kind)]))
+    array.push(getQpHelpItem(helpPhrase, kind, itemFilterPhrases[Number(kind)])),
   );
   return array;
 };

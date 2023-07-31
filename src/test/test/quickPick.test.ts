@@ -1,5 +1,3 @@
-import { assert } from "chai";
-import * as vscode from "vscode";
 import { quickPick } from "../../quickPick";
 import { getTestSetups } from "../testSetup/quickPick.testSetup";
 import {
@@ -7,6 +5,9 @@ import {
   getQuickPickOnDidChangeValueEventListeners,
 } from "../util/eventMockFactory";
 import { getQpItems } from "../util/qpItemMockFactory";
+
+import { assert } from "chai";
+import * as vscode from "vscode";
 
 type SetupsType = ReturnType<typeof getTestSetups>;
 
@@ -44,7 +45,7 @@ describe("QuickPick", () => {
   });
 
   describe("reloadSortingSettings", () => {
-    it(`1: should set that items should be sorted`, () => {
+    it("1: should set that items should be sorted", () => {
       setups.reloadSortingSettings1();
       quickPick.reloadSortingSettings();
 
@@ -191,7 +192,7 @@ describe("QuickPick", () => {
       quickPick.setPlaceholder(true);
       assert.equal(
         quickPick.getControl().placeholder,
-        "Please wait, loading..."
+        "Please wait, loading...",
       );
     });
 
@@ -201,7 +202,7 @@ describe("QuickPick", () => {
 
       assert.equal(
         quickPick.getControl().placeholder,
-        "Start typing file or symbol name..."
+        "Start typing file or symbol name...",
       );
     });
 
@@ -211,7 +212,7 @@ describe("QuickPick", () => {
 
       assert.equal(
         quickPick.getControl().placeholder,
-        "Type ? for help or start typing file or symbol name..."
+        "Type ? for help or start typing file or symbol name...",
       );
     });
 
@@ -222,7 +223,7 @@ describe("QuickPick", () => {
 
       assert.equal(
         quickPick.getControl().placeholder,
-        "Help phrase not set. Start typing file or symbol name..."
+        "Help phrase not set. Start typing file or symbol name...",
       );
     });
   });
@@ -230,7 +231,7 @@ describe("QuickPick", () => {
   describe("setOnDidChangeValueEventListeners", () => {
     it("1: should set new array of onDidChangeValueEventListeners", () => {
       quickPick.setOnDidChangeValueEventListeners(
-        getQuickPickOnDidChangeValueEventListeners(2)
+        getQuickPickOnDidChangeValueEventListeners(2),
       );
       assert.equal(quickPick.getOnDidChangeValueEventListeners().length, 2);
     });

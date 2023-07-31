@@ -1,5 +1,6 @@
-import * as vscode from "vscode";
 import { Action } from "./types";
+
+import * as vscode from "vscode";
 
 export const onDidProcessingEventEmitter: vscode.EventEmitter<void> =
   new vscode.EventEmitter();

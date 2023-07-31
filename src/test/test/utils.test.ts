@@ -1,5 +1,3 @@
-import { assert, expect } from "chai";
-import * as sinon from "sinon";
 import { Action, ActionType } from "../../types";
 import { utils } from "../../utils";
 import { getTestSetups } from "../testSetup/utils.testSetup";
@@ -14,6 +12,9 @@ import {
   getWorkspaceData,
 } from "../util/mockFactory";
 import { getQpItem, getQpItems } from "../util/qpItemMockFactory";
+
+import { assert, expect } from "chai";
+import * as sinon from "sinon";
 
 type SetupsType = ReturnType<typeof getTestSetups>;
 
@@ -53,14 +54,14 @@ describe("Utils", () => {
     it("1: should return true if amount of opened folders in workspace has changed", () => {
       assert.equal(
         utils.hasWorkspaceChanged(getWorkspaceFoldersChangeEvent(true)),
-        true
+        true,
       );
     });
 
     it("2: should return false if amount of opened folders in workspace has not changed", () => {
       assert.equal(
         utils.hasWorkspaceChanged(getWorkspaceFoldersChangeEvent(false)),
-        false
+        false,
       );
     });
   });
@@ -70,9 +71,9 @@ describe("Utils", () => {
       related to debounce setting has changed`, () => {
       assert.equal(
         utils.isDebounceConfigurationToggled(
-          getConfigurationChangeEvent(true, false)
+          getConfigurationChangeEvent(true, false),
         ),
-        true
+        true,
       );
     });
 
@@ -80,9 +81,9 @@ describe("Utils", () => {
       related to debounce setting has not changed`, () => {
       assert.equal(
         utils.isDebounceConfigurationToggled(
-          getConfigurationChangeEvent(false)
+          getConfigurationChangeEvent(false),
         ),
-        false
+        false,
       );
     });
   });
@@ -92,9 +93,9 @@ describe("Utils", () => {
       related to sorting setting has changed`, () => {
       assert.equal(
         utils.isSortingConfigurationToggled(
-          getConfigurationChangeEvent(true, false)
+          getConfigurationChangeEvent(true, false),
         ),
-        true
+        true,
       );
     });
 
@@ -102,7 +103,7 @@ describe("Utils", () => {
       related to debounce setting has not changed`, () => {
       assert.equal(
         utils.isSortingConfigurationToggled(getConfigurationChangeEvent(false)),
-        false
+        false,
       );
     });
   });
@@ -173,9 +174,9 @@ describe("Utils", () => {
         await utils.getUrisForDirectoryPathUpdate(
           qpItems,
           getDirectory("./fake/"),
-          0
+          0,
         ),
-        getItems(1, undefined, undefined, true)
+        getItems(1, undefined, undefined, true),
       );
     });
   });
@@ -206,7 +207,7 @@ describe("Utils", () => {
     it("1: should given fn be invoked after give", async () => {
       const stub = setups.sleepAndExecute1();
       const clock = sinon.useFakeTimers();
-      let fulfilled = false;
+      const fulfilled = false;
       utils.sleepAndExecute(1000, stub);
 
       // https://stackoverflow.com/questions/51526312/testing-setinterval-with-sinon-faketimers-not-working
@@ -224,7 +225,7 @@ describe("Utils", () => {
     it("1: should count word instances in given text", () => {
       const instances = utils.countWordInstances(
         "test string with xxxtestxxx value",
-        "test"
+        "test",
       );
       assert.equal(instances, 2);
     });
@@ -235,7 +236,7 @@ describe("Utils", () => {
       const index = utils.getNthIndex(
         "test string with xxxtestxxx value",
         "test",
-        2
+        2,
       );
       assert.equal(index, 20);
     });
@@ -255,7 +256,7 @@ describe("Utils", () => {
           getAction(ActionType.Remove, "test action 2", 2),
           lastAction,
         ],
-        (action: Action) => action.type === ActionType.Rebuild
+        (action: Action) => action.type === ActionType.Rebuild,
       );
 
       assert.deepEqual(actual, lastAction);
@@ -268,7 +269,7 @@ describe("Utils", () => {
           getAction(ActionType.Remove, "test action 2", 2),
           getAction(ActionType.Rebuild, "test action 3", 3),
         ],
-        (action: Action) => action.type === ActionType.Update
+        (action: Action) => action.type === ActionType.Update,
       );
 
       assert.equal(last, undefined);
@@ -302,9 +303,9 @@ describe("Utils", () => {
         utils.updateQpItemsWithNewDirectoryPath(
           getQpItems(),
           getDirectory("./fake/"),
-          getDirectory("./fake-new/")
+          getDirectory("./fake-new/"),
         ),
-        getQpItems(undefined, "./fake-new/")
+        getQpItems(undefined, "./fake-new/"),
       );
     });
 
@@ -315,9 +316,9 @@ describe("Utils", () => {
         utils.updateQpItemsWithNewDirectoryPath(
           getQpItems(),
           getDirectory("./fake-not-existing/"),
-          getDirectory("./fake-new/")
+          getDirectory("./fake-new/"),
         ),
-        getQpItems()
+        getQpItems(),
       );
     });
   });
@@ -369,7 +370,7 @@ describe("Utils", () => {
   "fake-another": {
     "fake-3.ts": "0 items"
   }
-}`
+}`,
       );
     });
   });

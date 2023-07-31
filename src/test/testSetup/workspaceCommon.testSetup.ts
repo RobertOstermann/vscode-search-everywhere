@@ -1,5 +1,3 @@
-import * as sinon from "sinon";
-import * as vscode from "vscode";
 import { actionProcessor } from "../../actionProcessor";
 import * as cache from "../../cache";
 import * as config from "../../config";
@@ -12,6 +10,9 @@ import { utils } from "../../utils";
 import { getSubscription, getWorkspaceData } from "../util/mockFactory";
 import { getQpItems } from "../util/qpItemMockFactory";
 import { stubMultiple } from "../util/stubHelpers";
+
+import * as sinon from "sinon";
+import * as vscode from "vscode";
 
 export const getTestSetups = () => {
   const sandbox = sinon.createSandbox();
@@ -29,7 +30,7 @@ export const getTestSetups = () => {
             returns: getQpItems(),
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     getData2: () => {
@@ -41,7 +42,7 @@ export const getTestSetups = () => {
             returns: undefined,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     index1: () => {
@@ -57,7 +58,7 @@ export const getTestSetups = () => {
             returns: Promise.resolve(["**/.history/**", "**/.vscode/**"]),
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     indexWithProgress1: () => {
@@ -82,7 +83,7 @@ export const getTestSetups = () => {
             method: "fetchShouldDisplayNotificationInStatusBar",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     indexWithProgress2: () => {
@@ -98,7 +99,7 @@ export const getTestSetups = () => {
             returns: false,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     registerAction1: () => {
@@ -109,7 +110,7 @@ export const getTestSetups = () => {
             method: "register",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     downloadData1: () => {
@@ -125,7 +126,7 @@ export const getTestSetups = () => {
             returns: getQpItems(),
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     cancelIndexing1: () => {
@@ -140,7 +141,7 @@ export const getTestSetups = () => {
             method: "cancel",
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     getNotificationLocation1: () => {
@@ -152,7 +153,7 @@ export const getTestSetups = () => {
             returns: true,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     getNotificationLocation2: () => {
@@ -164,7 +165,7 @@ export const getTestSetups = () => {
             returns: false,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     getNotificationTitle1: () => {
@@ -176,7 +177,7 @@ export const getTestSetups = () => {
             returns: false,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     getNotificationTitle2: () => {
@@ -188,7 +189,7 @@ export const getTestSetups = () => {
             returns: true,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     indexWithProgressTask1: () => {
@@ -238,7 +239,7 @@ export const getTestSetups = () => {
             returns: outputChannelInner,
           },
         ],
-        sandbox
+        sandbox,
       );
 
       return {
@@ -293,7 +294,7 @@ export const getTestSetups = () => {
             returns: outputChannelInner,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     indexWithProgressTask3: () => {
@@ -343,7 +344,7 @@ export const getTestSetups = () => {
             returns: outputChannelInner,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     indexWithProgressTask4: () => {
@@ -393,7 +394,7 @@ export const getTestSetups = () => {
             returns: outputChannelInner,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
     indexWithProgressTask5: () => {
@@ -451,7 +452,7 @@ export const getTestSetups = () => {
             returns: outputChannelInner,
           },
         ],
-        sandbox
+        sandbox,
       );
     },
   };
