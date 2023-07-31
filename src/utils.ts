@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { IndexStats, Item, QuickPickItem, WorkspaceData } from "./types";
 
 import * as vscode from "vscode";
@@ -58,24 +59,24 @@ function isSortingConfigurationToggled(
 }
 
 function printNoFolderOpenedMessage(): void {
-  vscode.window.showInformationMessage(
-    "Workspace doesn't contain any folder opened",
-  );
+  // vscode.window.showInformationMessage(
+  //   "Workspace doesn't contain any folder opened",
+  // );
 }
 
 function printErrorMessage(error: Error): void {
-  vscode.window.showInformationMessage(
-    `Something went wrong...
-    Extension encountered the following error: ${error.stack}`,
-  );
+  // vscode.window.showInformationMessage(
+  //   `Something went wrong...
+  //   Extension encountered the following error: ${error.stack}`,
+  // );
 }
 
 function printStatsMessage(indexStats: IndexStats): void {
-  vscode.window.showInformationMessage(
-    `Elapsed time: ${indexStats.ElapsedTimeInSeconds}s
-     Scanned files: ${indexStats.ScannedUrisCount}
-     Indexed items: ${indexStats.IndexedItemsCount}`,
-  );
+  // vscode.window.showInformationMessage(
+  //   `Elapsed time: ${indexStats.ElapsedTimeInSeconds}s
+  //    Scanned files: ${indexStats.ScannedUrisCount}
+  //    Indexed items: ${indexStats.IndexedItemsCount}`,
+  // );
 }
 
 function createWorkspaceData(): WorkspaceData {

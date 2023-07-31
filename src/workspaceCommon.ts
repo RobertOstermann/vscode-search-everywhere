@@ -104,7 +104,7 @@ function printStats(data: WorkspaceData, elapsedTime: number) {
     IndexedItemsCount: data.count,
   };
 
-  // utils.printStatsMessage(indexStats);
+  utils.printStatsMessage(indexStats);
   logger.logScanTime(indexStats);
   logger.logStructure(data);
 }
