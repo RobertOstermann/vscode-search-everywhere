@@ -28,6 +28,10 @@ export async function activate(context: vscode.ExtensionContext) {
       "searchEverywhere.reload",
       reload.bind(controller),
     ),
+    vscode.commands.registerCommand(
+      "searchEverywhere.searchFileBySortedSymbol",
+      () => vscode.commands.executeCommand("workbench.action.quickOpen", "@:"),
+    ),
   );
 
   await controller.startup();

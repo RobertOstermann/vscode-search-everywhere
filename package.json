@@ -170,6 +170,10 @@
         "title": "Search everywhere: Search"
       },
       {
+        "command": "searchEverywhere.searchFileBySortedSymbol",
+        "title": "Search everywhere: Search file by sorted symbol"
+      },
+      {
         "command": "searchEverywhere.reload",
         "title": "Search everywhere: Reload"
       }
