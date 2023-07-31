@@ -22,11 +22,11 @@ export async function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.commands.registerCommand(
       "searchEverywhere.search",
-      search.bind(null, controller),
+      search.bind(controller),
     ),
     vscode.commands.registerCommand(
       "searchEverywhere.reload",
-      reload.bind(null, controller),
+      reload.bind(controller),
     ),
   );
 

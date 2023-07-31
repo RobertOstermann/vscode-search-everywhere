@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /*
   source:
   https://rpeshkov.net/blog/vscode-extension-coverage/
@@ -57,30 +58,26 @@ function run(testsRoot: string, clb: any): any {
   }
 
   // Glob test files
-  glob(
+  glob.glob(
     "**/**.test.js",
     { cwd: path.join(testsRoot, "..") },
-    (error, files): any => {
-      if (error) {
-        return clb(error);
-      }
-      try {
-        // Fill into Mocha
-        files.forEach(
-          (f): Mocha => mocha.addFile(path.join(testsRoot, "..", f)),
-        );
-        // Run the tests
-        let failureCount = 0;
+  ).then((files: any[]): any => {
+    try {
+      // Fill into Mocha
+      files.forEach(
+        (f: string): Mocha => mocha.addFile(path.join(testsRoot, "..", f)),
+      );
+      // Run the tests
+      let failureCount = 0;
 
-        mocha
-          .run()
-          .on("fail", () => failureCount++)
-          .on("end", () => clb(undefined, failureCount));
-      } catch (error) {
-        return clb(error);
-      }
-    },
-  );
+      mocha
+        .run()
+        .on("fail", () => failureCount++)
+        .on("end", () => clb(undefined, failureCount));
+    } catch (error) {
+      return clb(error);
+    }
+  });
 }
 
 exports.configure = configure;
